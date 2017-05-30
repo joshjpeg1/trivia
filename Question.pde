@@ -6,6 +6,7 @@ public class Question {
   private final String question;
   private final String[] answers;
   private final int answerIndex;
+  private PImage img;
   
   /**
    * Constructs a new {@code Question} object.
@@ -18,19 +19,18 @@ public class Question {
    *         or if the answers array contains a null
    */
   public Question(int id, String question, String[] answers,
-                  int answerIndex) throws IllegalArgumentException {
-    if (question == null || answers == null) {
+                  int answerIndex, String imgUrl) throws IllegalArgumentException {
+    if (question == null || imgUrl == null) {
       throw new IllegalArgumentException("Cannot pass uninitialized arguments.");
     }
-    for (int i = 0; i < answers.length; i++) {
-      if (answers[i] == null) {
-        throw new IllegalArgumentException("Cannot pass uninitialized arguments.");
-      }
+    if (Utils.arrIsOrContainsNull(answers)) {
+      throw new IllegalArgumentException("Answers array contains uninitialized arguments.");
     }
     this.id = id;
     this.question = question;
     this.answers = answers;
     this.answerIndex = answerIndex;
+    this.img = loadImage(imgUrl);
   }
   
   @Override
@@ -40,18 +40,7 @@ public class Question {
     } else if (!(o instanceof Question)) {
       return false;
     }
-    Question that = (Question) o;
-    if (this.answers.length != that.answers.length) {
-      return false;
-    }
-    for (int i = 0; i < answers.length; i++) {
-      if (!this.answers[i].contains(that.answers[i])) {
-        return false;
-      }
-    }
-    return this.id == that.id
-        && this.question.equals(that.question)
-        && this.answerIndex == that.answerIndex;
+    return this.id == ((Question) o).id;
   }
   
   @Override

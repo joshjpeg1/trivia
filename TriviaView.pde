@@ -6,6 +6,5 @@ public class TriviaView {
    * Displays the current game state.
    */
   public void display() {
-    return;
   }
 }

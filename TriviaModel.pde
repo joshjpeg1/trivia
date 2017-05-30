@@ -37,7 +37,7 @@ public class TriviaModel {
         answers[j] = a.getString(j);
       }
       this.questions[i] = new Question(i, obj.getString("question"),
-          answers, obj.getInt("correct"));
+          answers, obj.getInt("correct"), obj.getString("image"));
     }
   }
   
