@@ -12,7 +12,7 @@ private TriviaController controller;
 /**
  * Sets up the program.
  * To change the questions asked, simply change the file name string
- * given to the TriviaController.
+ * passed to the controller.
  */
 void setup() {
   size(1000, 1000);

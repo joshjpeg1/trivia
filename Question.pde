@@ -4,9 +4,8 @@
 public class Question {
   private final int id;
   private final String question;
-  private final String[] answers;
-  private final int answerIndex;
-  private PImage img;
+  private final Answer[] answers;
+  private final PImage img;
   
   /**
    * Constructs a new {@code Question} object.
@@ -25,8 +24,10 @@ public class Question {
     }
     this.id = id;
     this.question = question;
-    this.answers = answers;
-    this.answerIndex = answerIndex;
+    this.answers = new Answer[answers.length];
+    for (int i = 0; i < answers.length; i++) {
+      this.answers[i] = new Answer((this.id * 100) + i, answers[i], i == answerIndex);
+    }
     this.img = loadImage(imgUrl);
   }
   
@@ -37,7 +38,8 @@ public class Question {
     } else if (!(o instanceof Question)) {
       return false;
     }
-    return this.id == ((Question) o).id;
+    return this.id == ((Question) o).id
+      && this.question == ((Question) o).question;
   }
   
   @Override
@@ -48,10 +50,7 @@ public class Question {
   @Override
   public String toString() {
     String str = this.id + "\n" + this.question + "\n";
-    for (int i = 0; i < this.answers.length; i++) {
-      str += (i + 1) + ((i == answerIndex) ? " (CORRECT)" : "")
-          + ": " + this.answers[i] + "\n";
-    }
+    str += Utils.arrToString(this.answers) + "\n";
     return str;
   }
   
@@ -62,6 +61,6 @@ public class Question {
    * @return true if the indices match, false otherwise
    */
   public boolean correctChoice(int chosenIndex) {
-    return this.answerIndex == chosenIndex;
+    return this.answers[chosenIndex].isCorrect();
   }
 }
