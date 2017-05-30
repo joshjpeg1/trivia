@@ -6,9 +6,11 @@ public class TriviaController {
   
   /**
    * Constructs a new {@code TriviaController} object.
+   *
+   * @param fileName      the name of the JSON file of questions
    */
-  public TriviaController() {
-    this.model = new TriviaModel();
+  public TriviaController(String fileName) {
+    this.model = new TriviaModel(fileName);
   }
   
   /**

@@ -59,6 +59,16 @@ public class Question {
     return this.id;
   }
   
+  @Override
+  public String toString() {
+    String str = this.id + "\n" + this.question + "\n";
+    for (int i = 0; i < this.answers.length; i++) {
+      str += (i + 1) + ((i == answerIndex) ? " (CORRECT)" : "")
+          + ": " + this.answers[i] + "\n";
+    }
+    return str;
+  }
+  
   /**
    * Returns true if the given index is the same as the correct answer's index.
    *
