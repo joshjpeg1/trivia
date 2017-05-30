@@ -1,0 +1,175 @@
+{
+    "questions": [
+        {
+            "question": "Black Swan",
+            "correct": 0,
+            "answers": [
+                "I just want to be perfect.",
+                "But again, truth be told, if you're looking for the guilty you need only look into a mirror.",
+                "Bad luck isn't brought by broken mirrors, but by broken minds."
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        },
+        {
+            "question": "Pulp Fiction",
+            "correct": 1,
+            "answers": [
+                "I can't kill a lot with one sword!",
+                "Would you give a guy a foot massage?",
+                "My ass may be dumb, but I ain't no dumbass."
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        },
+        {
+            "question": "Short Circuit",
+            "correct": 2,
+            "answers": [
+                "Welcome to America!",
+                "I know now why you cry. But it's something I can never do.",
+                "Johnny Five is alive!"
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        },
+        {
+            "question": "The Shining",
+            "correct": 1,
+            "answers": [
+                "I'm a messenger of God. You're doomed if you stay here!",
+                "Heeeeere's Johnny!",
+                "Oh, good Lord! So young. So pretty. Oh, what monster could have done this?"
+
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        },
+        {
+            "question": "The Royal Tenenbaums",
+            "correct": 0,
+            "answers": [
+                "Of course it's dark. It's a suicide note.",
+                "They're not scared of you. They're scared of what you represent to 'em.",
+                "I love you, but you don't know what you're talking about."
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        },
+        {
+            "question": "The Third Man",
+            "correct": 2,
+            "answers": [
+                "I know that Moscow has planted a mole, and I know it is one of five men.",
+                "We are not so very different, you and I. We've both spent our lives looking for the weaknesses in one another.",
+                "In Switzerland, they had brotherly love. They had 500 years of democracy and peace. And what did that produce? The cuckoo clock."
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        },
+        {
+            "question": "District 9",
+            "correct": 2,
+            "answers": [
+                "If they’re mortal, they must have mortal weaknesses. They’ll be stopped, somehow.",
+                "We’d better get back, ‘cause it’ll be dark soon, and they mostly come at night… mostly.",
+                "Get your fokkin' tentacle out of my face!"
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        },
+        {
+            "question": "Oldboy",
+            "correct": 0,
+            "answers": [
+                "Laugh and the world laughs with you. Weep and you weep alone..",
+                "The bad image kidnappers get is because of kids getting killed. But we're different. Give us the money and we'll return the kid pronto.",
+                "Listen carefully. Everyone make mistakes. But if you committed a sin, you have to make an atonement for that sin."
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        },
+        {
+            "question": "Se7en",
+            "correct": 1,
+            "answers": [
+                "This is a game. All of this is for you. You're not investigating anything. You're a fucking rat in a maze.",
+                "What's in the box?!",
+                "Sanity's not a choice, Marshall. You can't just choose to get over it."
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        },
+        {
+            "question": "Scarface",
+            "correct": 0,
+            "answers": [
+                "Okay. You wanna play rough? Say hello to my little friend!",
+                "I have stones to sell, fat to chew and many different men to see about many different dogs, so if I am not rushing you…",
+                "In Sicily, women are more dangerous than shotguns."
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        },
+        {
+            "question": "Candyman",
+            "correct": 0,
+            "answers": [
+                "They will say that I have shed innocent blood. What's blood for, if not for shedding?",
+                "We just cut up our girlfriend with a chainsaw. Does that sound 'fine'?",
+                "I'm your number one fan. There's nothing to worry about. You're going to be just fine. I will take good care of you. I'm your number one fan."
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        },
+        {
+            "question": "A Clockwork Orange",
+            "correct": 2,
+            "answers": [
+                "Hate to tell you this buddy, but you have to wear clothes to work. There's a law or something.",
+                "We gotta win that fight tonight. We gotta get even with those Socs! Let's do it for Johnny, man. We'll do it for Johnny!",
+                "It's funny how the colors of the real world only seem really real when you viddy them on the screen."
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        },
+        {
+            "question": "Drive",
+            "correct": 0,
+            "answers": [
+                "You give me a time and a place, I give you a five minute window. Anything happens in that five minutes and I'm yours. No matter what.",
+                "Take comfort in knowing you never had a choice.",
+                "I can't drive you around while you're killing folks. It ain't my job!"
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        },
+        {
+            "question": "Top Gun",
+            "correct": 1,
+            "answers": [
+                "That flying stunt today was pure madness. If there wasn't a lady present, I'd tear you apart like Christmas goose.",
+                "You can be my wingman any time.",
+                "You risked the lives of some damn fine pilots... and that's *my* job!"
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        },
+        {
+            "question": "King of Comedy",
+            "correct": 0,
+            "answers": [
+                "Better to be king for a night than schmuck for a lifetime.",
+                "Loneliness has followed me my whole life, everywhere. In bars, in cars, sidewalks, stores, everywhere. There's no escape. I'm God's lonely man.",
+                "Thank God for the rain to wash the trash off the sidewalk."
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        },
+        {
+            "question": "2001: A Space Odyssey",
+            "correct": 2,
+            "answers": [
+                "There is no more beauty, and there's no more imagination. And there are no frontiers left to conquer.",
+                "On Earth, everywhere you go, the temperature is 75 degrees. Everything is the same; all the people are exactly the same. Now what kind of life is that?",
+                "I'm sorry, Dave. I'm afraid I can't do that."
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        },
+        {
+            "question": "Monty Python and the Holy Grail",
+            "correct": 0,
+            "answers": [
+                "Three shall be the number thou shalt count, and the number of the counting shall be three. Four shalt thou not count, neither count thou two, excepting that thou then proceed to three. Five is right out.",
+                "He's not the Messiah. He's a very naughty boy! Now, piss off!",
+                "Look, I don't think it should be a sin, just for saying \"Jehovah\"."
+            ],
+            "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+        }
+    ]
+}

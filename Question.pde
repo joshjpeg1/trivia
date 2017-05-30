@@ -20,11 +20,8 @@ public class Question {
    */
   public Question(int id, String question, String[] answers,
                   int answerIndex, String imgUrl) throws IllegalArgumentException {
-    if (question == null || imgUrl == null) {
+    if (question == null || imgUrl == null || Utils.arrIsOrContainsNull(answers)) {
       throw new IllegalArgumentException("Cannot pass uninitialized arguments.");
-    }
-    if (Utils.arrIsOrContainsNull(answers)) {
-      throw new IllegalArgumentException("Answers array contains uninitialized arguments.");
     }
     this.id = id;
     this.question = question;

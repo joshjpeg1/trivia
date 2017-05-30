@@ -18,6 +18,9 @@ public class TriviaModel {
     this.view = new TriviaView();
     this.score = 0;
     initQuestions(fileName);
+    for (int i = 0; i < this.questions.length; i++) {
+      println(this.questions[i].toString());
+    }
   }
   
   /**
