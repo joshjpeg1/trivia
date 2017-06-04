@@ -39,4 +39,8 @@ public static final class Utils {
     }
     return str;
   }
+  
+  public static int boolToInt(boolean b) {
+    return (b) ? 1 : 0;
+  }
 }

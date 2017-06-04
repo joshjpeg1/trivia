@@ -5,21 +5,22 @@ public class AnswerButton extends Button {
   private final color wrongColor;
   private ButtonState state;
   
-  public AnswerButton(int x, int y, float w, float h, Answer answer) {
-    super(x, y, w, h, color(255), color(255), color(0), answer.toString(), 20);
+  public AnswerButton(int x, int y, float w, float h, Answer answer)
+                      throws IllegalArgumentException {
+    super(x, y, w, h, color(255), color(255), color(0), "", 20);
     this.hoverColor = color(#EDEDED);
     this.correctColor = color(#37CE8F);
     this.wrongColor = color(#EF7676);
-    this.answer = answer;
-    this.state = ButtonState.NONE;
+    this.init(answer);
   }
   
-  public void reset(Answer answer) {
+  public void init(Answer answer) {
     if (answer == null) {
       throw new IllegalArgumentException();
     }
     this.answer = answer;
-    this.text = this.wrapText(text, (int) w);
+    this.text = this.answer.toString();
+    this.displayText = this.wrapText(this.text, (int) w);
     this.state = ButtonState.NONE;
   }
   
@@ -27,7 +28,7 @@ public class AnswerButton extends Button {
   public void display() {
     textSize(textSize);
     textAlign(CENTER, CENTER);
-    this.state = checkState();
+    this.state = this.updateState();
     switch (this.state) {
       case HOVER:
         fill(this.hoverColor);
@@ -50,10 +51,10 @@ public class AnswerButton extends Button {
       fill(fill);
     }
     noStroke();
-    text(text, this.x + (this.w / 2), this.y + (this.h / 2));
+    text(this.displayText, this.x + (this.w / 2), this.y + (this.h / 2));
   }
   
-  private ButtonState checkState() {
+  private ButtonState updateState() {
     if (this.state.equals(ButtonState.CORRECT)
         || this.state.equals(ButtonState.WRONG)) {
       return this.state;

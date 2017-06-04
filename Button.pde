@@ -4,6 +4,7 @@ public class Button {
   protected final float w;
   protected final float h;
   protected String text;
+  protected String displayText;
   protected final int textSize;
   protected final color bg1;
   protected final color bg2;
@@ -20,8 +21,8 @@ public class Button {
     this.w = w;
     this.h = h;
     this.textSize = textSize;
-    this.text = this.wrapText(text, (int) w);
-    
+    this.text = text;
+    this.displayText = this.wrapText(this.text, (int) w);
     this.bg1 = bg1;
     this.bg2 = bg2;
     this.fill = fill;
@@ -38,7 +39,7 @@ public class Button {
       drawGradient();
     }
     fill(fill);
-    text(text, this.x + (this.w / 2), this.y + (this.h / 2));
+    text(this.displayText, this.x + (this.w / 2), this.y + (this.h / 2));
   }
   
   private void drawGradient() {

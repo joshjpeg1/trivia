@@ -67,4 +67,8 @@ public class Question {
       return false;
     }
   }
+  
+  public Answer[] getAnswers() {
+    return this.answers;
+  }
 }

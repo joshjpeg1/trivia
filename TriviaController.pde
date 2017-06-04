@@ -31,6 +31,8 @@ public class TriviaController {
    * Handles a mouse press when the program is running.
    */
   public void mouseHandler() {
-    return;
+    if (mousePressed) {
+      model.update();
+    }
   }
 }

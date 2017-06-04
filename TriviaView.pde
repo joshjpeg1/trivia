@@ -11,24 +11,26 @@ public class TriviaView {
   private final ArrayList<Button> menu;
   private ArrayList<AnswerButton> playing;
   
-  public TriviaView() {
+  public TriviaView(ArrayList<JSONObject> categories) {
     // MENU
     int w = 340; //width
     int h = 170; //height
     int p = 40; //padding
-    menu = new ArrayList(Arrays.asList(new Button(130, 140, w, h, color(#9655FF), color(#568FEB), white, "Movie Quotes", 40),
-           new Button(130 + w + p, 140, w, h, color(#5596FF), color(#37EDDF), white, "Name That\nPokémon", 40),
-           new Button(130, 140 + h + p, w, h, color(#F55A8F), color(#EAB34C), white, "State Capitals", 40),
-           new Button(130 + w + p, 140 + h + p, w, h, color(#2EF0A6), color(#B4EF79), white, "Harry Potter", 40),
-           new Button(width - 50, 20, 30, 20, white, white, color(#656565), "Exit", 20)));
+    menu = new ArrayList<Button>();
+    for (int i = 0; i < categories.size(); i++) {
+      JSONObject category = categories.get(i);
+      String title = category.getString("title");
+      JSONArray top = category.getJSONObject("gradient").getJSONArray("top");
+      JSONArray bot = category.getJSONObject("gradient").getJSONArray("bot");
+      color topColor = color(top.getInt(0), top.getInt(1), top.getInt(2));
+      color botColor = color(bot.getInt(0), bot.getInt(1), bot.getInt(2));
+      menu.add(new Button(130 + (Utils.boolToInt(i % 2 != 0) * (w + p)),
+                          140 + (Utils.boolToInt(i >= 2) * (h + p)),
+                          w, h, topColor, botColor, white, title, 40));
+    }
+    menu.add(new Button(width - 50, 20, 30, 20, white, white, color(#656565), "Exit", 20));
    // PLAYING
-   w = 300;
-   h = 300;
-   p = 0;
-   playing = new ArrayList(Arrays.asList(new AnswerButton(400, 0, w, h, new Answer(0, "\"What’s in the box?!\"", true)),
-             new AnswerButton(400 + w, 0, w, h, new Answer(0, "\"This is a game. All of this is for you. You’re not investigating anything. You’re a fucking rat in a maze.\"", false)),
-             new AnswerButton(400, h, w, h, new Answer(0, "\"Sanity’s not a choice, Marshall. You can’t just choose to get over it.\"", false)),
-             new AnswerButton(400 + w, h, w, h, new Answer(0, "\"Okay. You wanna play rough? Say hello to my little friend!\"", false))));
+   playing = new ArrayList<AnswerButton>();
   }
   
   /**
@@ -94,5 +96,24 @@ public class TriviaView {
   
   private void displayOver() {
     return;
+  }
+  
+  public String getCategory() {
+    for (Button b : menu) {
+      if (b.hover()) {
+        return b.toString();
+      }
+    }
+    return null;
+  }
+  
+  public void nextQuestion(Question question) {
+    Answer[] answers = question.getAnswers();
+    this.playing = new ArrayList<AnswerButton>();
+    for (int i = 0; i < answers.length; i++) {
+      this.playing.add(new AnswerButton(400 + (Utils.boolToInt(i % 2 != 0) * 300),
+                                        (Utils.boolToInt(i >= 2) * 300),
+                                        300, 300, answers[i]));
+    }
   }
 }
