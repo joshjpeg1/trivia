@@ -72,6 +72,8 @@ public class TriviaModel {
       case MENU:
         startGame(view.getCategory());
         break;
+      case PLAYING:
+        nextQuestion();
       default:
         break;
     }
@@ -85,6 +87,18 @@ public class TriviaModel {
         System.out.println(category);
         initQuestions(category);
       }
+    }
+  }
+  
+  private void nextQuestion() {
+    if (currentQuestion == this.questions.length) {
+      this.currentQuestion = 0;
+      this.gameState = GameState.OVER;
+      return;
+    }
+    if (this.view.answerChosen()) {
+      this.currentQuestion++;
+      this.view.nextQuestion(this.questions[currentQuestion - 1]);
     }
   }
 }

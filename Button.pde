@@ -9,6 +9,7 @@ public class Button {
   protected final color bg1;
   protected final color bg2;
   protected final color fill;
+  private final DrawUtils draw = new DrawUtils();
   
   public Button(int x, int y, float w, float h, color bg1, color bg2,
                 color fill, String text, int textSize)
@@ -36,20 +37,10 @@ public class Button {
       fill(this.bg1);
       rect(this.x, this.y, this.w, this.h);
     } else {
-      drawGradient();
+      draw.gradient(this.x, this.y, this.w, this.h, this.bg1, this.bg2);
     }
     fill(fill);
     text(this.displayText, this.x + (this.w / 2), this.y + (this.h / 2));
-  }
-  
-  private void drawGradient() {
-    noFill();
-    for (int i = this.y; i <= this.y + this.h; i++) {
-      float inter = map(i, this.y, this.y + this.h, 0, 1);
-      color c = lerpColor(this.bg1, this.bg2, inter);
-      stroke(c);
-      line(this.x, i, this.x + this.w, i);
-    }
   }
   
   // wraps text within a given width by adding new lines

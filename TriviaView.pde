@@ -116,4 +116,8 @@ public class TriviaView {
                                         300, 300, answers[i]));
     }
   }
+  
+  private boolean answerChosen() {
+    return true;
+  }
 }
