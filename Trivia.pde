@@ -15,7 +15,7 @@ private TriviaController controller;
  * passed to the controller.
  */
 void setup() {
-  size(1000, 1000);
+  size(1000, 600);
   controller = new TriviaController("moviequotes.json");
 }
 

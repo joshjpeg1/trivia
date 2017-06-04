@@ -5,6 +5,7 @@ public class TriviaModel {
   private int score;
   private TriviaView view;
   private Question[] questions;
+  private GameState gameState;
   
   /**
    * Constructs a new {@code TriviaModel} object.
@@ -17,6 +18,7 @@ public class TriviaModel {
     }
     this.view = new TriviaView();
     this.score = 0;
+    this.gameState = GameState.PLAYING;//GameState.MENU;
     initQuestions(fileName);
     println(Utils.arrToString(this.questions));
   }
@@ -46,6 +48,6 @@ public class TriviaModel {
    * Calls the view to display the current game state.
    */
   public void display() {
-    this.view.display();
+    this.view.display(this.gameState);
   }
 }

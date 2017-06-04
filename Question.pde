@@ -58,9 +58,13 @@ public class Question {
    * Returns true if the given index is the same as the correct answer's index.
    *
    * @param chosenIndex     the index chosen by the user
-   * @return true if the indices match, false otherwise
+   * @return true if the indices match, false otherwise (or if index is too large/small)
    */
   public boolean correctChoice(int chosenIndex) {
-    return this.answers[chosenIndex].isCorrect();
+    try {
+      return this.answers[chosenIndex].isCorrect();
+    } catch (IndexOutOfBoundsException e) {
+      return false;
+    }
   }
 }
