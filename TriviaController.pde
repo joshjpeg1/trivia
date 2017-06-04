@@ -21,13 +21,6 @@ public class TriviaController {
   }
   
   /**
-   * Handles a key press when the program is running.
-   */
-  public void keyHandler() {
-    return;
-  }
-  
-  /**
    * Handles a mouse press when the program is running.
    */
   public void mouseHandler() {

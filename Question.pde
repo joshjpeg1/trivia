@@ -68,6 +68,11 @@ public class Question {
     }
   }
   
+  /**
+   * Gets the answers to this question.
+   *
+   * @return an array of the answers to this question
+   */
   public Answer[] getAnswers() {
     return this.answers;
   }

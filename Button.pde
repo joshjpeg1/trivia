@@ -1,3 +1,6 @@
+/**
+ * Represents a button with a basic hover state.
+ */
 public class Button {
   protected final int x;
   protected final int y;
@@ -9,13 +12,29 @@ public class Button {
   protected final color bg1;
   protected final color bg2;
   protected final color fill;
-  private final DrawUtils draw = new DrawUtils();
+  protected final DrawUtils draw = new DrawUtils();
   
+  /**
+   * Constructs a {@code Button} object.
+   *
+   * @param x          the starting x-coordinate
+   * @param y          the starting y-coordinate
+   * @param w          the width of the button
+   * @param h          the height of the button
+   * @param bg1        the top color of the button gradient
+   * @param bg2        the bottom color of the button gradient
+   * @param fill       the fill color of the text
+   * @param text       the (unformatted) text to be displayed in the button
+   * @param textSize   the size of the text in the button
+   * @throws IllegalArgumentException if the x, y, w, h, or textSize values are
+   * negative or if the given text is uninitialized
+   */
   public Button(int x, int y, float w, float h, color bg1, color bg2,
                 color fill, String text, int textSize)
                 throws IllegalArgumentException {
     if (x < 0 || y < 0 || w < 0 || h < 0 || textSize < 0 || text == null) {
-      throw new IllegalArgumentException("Cannot pass null or uninitialized values.");
+      throw new IllegalArgumentException("Cannot pass negative or "
+          + "uninitialized values.");
     }
     this.x = x;
     this.y = y;
@@ -23,12 +42,20 @@ public class Button {
     this.h = h;
     this.textSize = textSize;
     this.text = text;
-    this.displayText = this.wrapText(this.text, (int) w);
+    this.displayText = this.draw.wrapText(this.text, (int) this.w, this.textSize);
     this.bg1 = bg1;
     this.bg2 = bg2;
     this.fill = fill;
   }
   
+  @Override
+  public String toString() {
+    return text;
+  }
+  
+  /**
+   * Displays the button on the sketch.
+   */
   public void display() {
     textSize(textSize);
     textAlign(CENTER, CENTER);
@@ -43,32 +70,11 @@ public class Button {
     text(this.displayText, this.x + (this.w / 2), this.y + (this.h / 2));
   }
   
-  // wraps text within a given width by adding new lines
-  // breaks only at spaces in sentences
-  protected String wrapText(String str, int maxWidth) {
-    textSize(this.textSize);
-    maxWidth -= 20; // padding
-    if (str.length() > 2) {
-      while (textWidth(str) > maxWidth) {
-        String wrappedLine = "";
-        while (textWidth(str) > maxWidth || (str.length() > 0 && str.charAt(str.length() - 1) != ' ')) {
-          wrappedLine = str.charAt(str.length() - 1) + wrappedLine;
-          str = str.substring(0, str.length() - 1);
-        }
-        if (str.length() == 0) {
-          return wrappedLine;
-        }
-        str += "\n" + wrappedLine;
-      }
-    }
-    return str;
-  }
-  
-  @Override
-  public String toString() {
-    return text;
-  }
-  
+  /**
+   * Checks if the mouse is hovering the button.
+   *
+   * @return true if the mouse is hovering, false otherwise
+   */
   public boolean hover() {
     return (mouseX >= x && mouseX <= w + x)
         && (mouseY >= y && mouseY <= h + y);

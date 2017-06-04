@@ -40,6 +40,11 @@ public static final class Utils {
     return str;
   }
   
+  /**
+   * Converts a boolean to an int value.
+   *
+   * @return 1 if the given boolean is true, 0 if false
+   */
   public static int boolToInt(boolean b) {
     return (b) ? 1 : 0;
   }

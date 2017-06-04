@@ -67,10 +67,14 @@ public class TriviaModel {
     this.view.display(this.gameState);
   }
   
+  /**
+   * Updates the model if a mouse is pressed, based on the current
+   * state of the game.
+   */
   public void update() {
     switch (gameState) {
       case MENU:
-        startGame(view.getCategory());
+        menuUpdate(view.getCategory());
         break;
       case PLAYING:
         nextQuestion();
@@ -79,7 +83,12 @@ public class TriviaModel {
     }
   }
   
-  private void startGame(String category) {
+  /**
+   * Helper to the update method. If a category is clicked, the model
+   * will start the game with that category's questions. If the exit
+   * button is clicked, the game will exit.
+   */
+  private void menuUpdate(String category) {
     if (category != null) {
       if (category.equals("Exit")) {
         System.exit(0);
@@ -90,6 +99,10 @@ public class TriviaModel {
     }
   }
   
+  /**
+   * Helper to the update method. Advances to the next question after
+   * an answer was chosen for the current question.
+   */
   private void nextQuestion() {
     if (currentQuestion == this.questions.length) {
       this.currentQuestion = 0;

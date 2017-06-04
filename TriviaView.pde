@@ -58,6 +58,9 @@ public class TriviaView {
     }
   }
   
+  /**
+   * Displays the menu.
+   */
   private void displayMenu() {
     textFont(bold);
     textSize(60);
@@ -78,6 +81,9 @@ public class TriviaView {
     }
   }
   
+  /**
+   * Displays the current question.
+   */
   private void displayPlaying() {
     textFont(medium);
     boolean hovering = false;
@@ -94,10 +100,20 @@ public class TriviaView {
     }
   }
   
+  /**
+   * Displays the game over state.
+   */
   private void displayOver() {
     return;
   }
   
+  /**
+   * Gets the category, or exit button, clicked in the
+   * main menu, or null if nothing has been clicked.
+   *
+   * @return the String representation of the button, or null
+   * if no button has been clicked
+   */
   public String getCategory() {
     for (Button b : menu) {
       if (b.hover()) {
@@ -107,7 +123,15 @@ public class TriviaView {
     return null;
   }
   
-  public void nextQuestion(Question question) {
+  /**
+   * Changes the view and buttons to the given question.
+   *
+   * @throws IllegalArgumentException if the given question is uninitialized
+   */
+  public void nextQuestion(Question question) throws IllegalArgumentException {
+    if (question == null) {
+      throw new IllegalArgumentException("Cannot display uninitialized question.");
+    }
     Answer[] answers = question.getAnswers();
     this.playing = new ArrayList<AnswerButton>();
     for (int i = 0; i < answers.length; i++) {
@@ -117,6 +141,11 @@ public class TriviaView {
     }
   }
   
+  /**
+   * Checks if an answer was chosen to the current question.
+   *
+   * @return true if an answer was chosen, false otherwise
+   */
   private boolean answerChosen() {
     return true;
   }

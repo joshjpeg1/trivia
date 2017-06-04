@@ -27,13 +27,6 @@ void draw() {
 }
 
 /**
- * Handles a key pressed when the program is running.
- */
-void keyPressed() {
-  controller.keyHandler();
-}
-
-/**
  * Handles a mouse press when the program is running.
  */
 void mousePressed() {

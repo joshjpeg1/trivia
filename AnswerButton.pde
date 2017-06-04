@@ -1,3 +1,6 @@
+/**
+ * Represents a button for an answer to a trivia question.
+ */
 public class AnswerButton extends Button {
   private Answer answer;
   private final color hoverColor;
@@ -5,22 +8,28 @@ public class AnswerButton extends Button {
   private final color wrongColor;
   private ButtonState state;
   
+  /**
+   * Constructs a {@code AnswerButton} object.
+   *
+   * @param x         the starting x-coordinate
+   * @param y         the starting y-coordinate
+   * @param w         the width of the button
+   * @param h         the height of the button
+   * @param answer    the answer the button represents
+   * @throws IllegalArgumentException if the given answer is uninitialized
+   */
   public AnswerButton(int x, int y, float w, float h, Answer answer)
                       throws IllegalArgumentException {
     super(x, y, w, h, color(255), color(255), color(0), "", 20);
     this.hoverColor = color(#EDEDED);
     this.correctColor = color(#37CE8F);
     this.wrongColor = color(#EF7676);
-    this.init(answer);
-  }
-  
-  public void init(Answer answer) {
     if (answer == null) {
       throw new IllegalArgumentException();
     }
     this.answer = answer;
     this.text = this.answer.toString();
-    this.displayText = this.wrapText(this.text, (int) w);
+    this.displayText = this.draw.wrapText(this.text, (int) this.w, this.textSize);
     this.state = ButtonState.NONE;
   }
   
@@ -28,7 +37,7 @@ public class AnswerButton extends Button {
   public void display() {
     textSize(textSize);
     textAlign(CENTER, CENTER);
-    this.state = this.updateState();
+    this.state = this.getState();
     switch (this.state) {
       case HOVER:
         fill(this.hoverColor);
@@ -54,7 +63,12 @@ public class AnswerButton extends Button {
     text(this.displayText, this.x + (this.w / 2), this.y + (this.h / 2));
   }
   
-  private ButtonState updateState() {
+  /**
+   * Gets the current state of the button.
+   *
+   * @return the current state of the button
+   */
+  private ButtonState getState() {
     if (this.state.equals(ButtonState.CORRECT)
         || this.state.equals(ButtonState.WRONG)) {
       return this.state;
