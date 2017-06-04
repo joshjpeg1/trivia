@@ -4,6 +4,7 @@ import java.util.Arrays;
  */
 public class TriviaView {
   private final PFont bold = loadFont("bold.vlw");
+  private final PFont medium = loadFont("medium.vlw");
   private final color white = color(255);
   private final color black = color(0);
   
@@ -21,7 +22,13 @@ public class TriviaView {
            new Button(130 + w + p, 140 + h + p, w, h, color(#2EF0A6), color(#B4EF79), white, "Harry Potter", 40),
            new Button(width - 50, 20, 30, 20, white, white, color(#656565), "Exit", 20)));
    // PLAYING
-   playing = new ArrayList<AnswerButton>();
+   w = 300;
+   h = 300;
+   p = 0;
+   playing = new ArrayList(Arrays.asList(new AnswerButton(400, 0, w, h, new Answer(0, "\"What’s in the box?!\"", true)),
+             new AnswerButton(400 + w, 0, w, h, new Answer(0, "\"This is a game. All of this is for you. You’re not investigating anything. You’re a fucking rat in a maze.\"", false)),
+             new AnswerButton(400, h, w, h, new Answer(0, "\"Sanity’s not a choice, Marshall. You can’t just choose to get over it.\"", false)),
+             new AnswerButton(400 + w, h, w, h, new Answer(0, "\"Okay. You wanna play rough? Say hello to my little friend!\"", false))));
   }
   
   /**
@@ -70,7 +77,19 @@ public class TriviaView {
   }
   
   private void displayPlaying() {
-    return;
+    textFont(medium);
+    boolean hovering = false;
+    for (AnswerButton b : playing) {
+      b.display();
+      if (b.hover()) {
+        hovering = true;
+      }
+    }
+    if (hovering) {
+      cursor(HAND);
+    } else {
+      cursor(ARROW);
+    }
   }
   
   private void displayOver() {

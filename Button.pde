@@ -1,13 +1,13 @@
 public class Button {
-  private final int x;
-  private final int y;
-  private final float w;
-  private final float h;
-  private final String text;
-  private final int textSize;
-  private final color bg1;
-  private final color bg2;
-  private final color fill;
+  protected final int x;
+  protected final int y;
+  protected final float w;
+  protected final float h;
+  protected String text;
+  protected final int textSize;
+  protected final color bg1;
+  protected final color bg2;
+  protected final color fill;
   
   public Button(int x, int y, float w, float h, color bg1, color bg2,
                 color fill, String text, int textSize)
@@ -19,8 +19,9 @@ public class Button {
     this.y = y;
     this.w = w;
     this.h = h;
-    this.text = text;
     this.textSize = textSize;
+    this.text = this.wrapText(text, (int) w);
+    
     this.bg1 = bg1;
     this.bg2 = bg2;
     this.fill = fill;
@@ -48,6 +49,27 @@ public class Button {
       stroke(c);
       line(this.x, i, this.x + this.w, i);
     }
+  }
+  
+  // wraps text within a given width by adding new lines
+  // breaks only at spaces in sentences
+  protected String wrapText(String str, int maxWidth) {
+    textSize(this.textSize);
+    maxWidth -= 20; // padding
+    if (str.length() > 2) {
+      while (textWidth(str) > maxWidth) {
+        String wrappedLine = "";
+        while (textWidth(str) > maxWidth || (str.length() > 0 && str.charAt(str.length() - 1) != ' ')) {
+          wrappedLine = str.charAt(str.length() - 1) + wrappedLine;
+          str = str.substring(0, str.length() - 1);
+        }
+        if (str.length() == 0) {
+          return wrappedLine;
+        }
+        str += "\n" + wrappedLine;
+      }
+    }
+    return str;
   }
   
   @Override

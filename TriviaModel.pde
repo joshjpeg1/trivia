@@ -20,7 +20,7 @@ public class TriviaModel {
     this.score = 0;
     this.gameState = GameState.PLAYING;//GameState.MENU;
     initQuestions(fileName);
-    println(Utils.arrToString(this.questions));
+    //println(Utils.arrToString(this.questions));
   }
   
   /**

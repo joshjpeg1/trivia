@@ -43,7 +43,7 @@ public class Answer {
   
   @Override
   public String toString() {
-    return id + ((correct) ? " (CORRECT)" : "") + ": " + this.answer;
+    return this.answer;
   }
   
   /**
