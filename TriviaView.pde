@@ -14,12 +14,32 @@ public class TriviaView {
   private ScreenElem question;
   private PImage image;
   
-  public TriviaView(ArrayList<JSONObject> categories) {
-    // MENU
-    int w = 340; //width
-    int h = 170; //height
-    int p = 40; //padding
-    this.menu = new ArrayList<ScreenElem>();
+  /**
+   * Constructs a new {@code TriviaView} object.
+   *
+   * @param categories    a list of the JSON data for the different categories
+   */
+  public TriviaView(ArrayList<JSONObject> categories) throws IllegalArgumentException {
+    this.menu = this.initMenu(categories);
+    this.playing = new ArrayList<AnswerButton>();
+    this.question = null;
+    this.image = null;
+  }
+  
+  /**
+   * Initializes and creates all of the menu buttons.
+   *
+   * @param categories    a list of the JSON data for the different categories
+   */
+  private ArrayList<ScreenElem> initMenu(ArrayList<JSONObject> categories) 
+      throws IllegalArgumentException {
+    if (categories == null || categories.contains(null)) {
+      throw new IllegalArgumentException("Cannot use given list.");
+    }
+    int w = 340; // width
+    int h = 170; // height
+    int p = 40;  // padding
+    ArrayList<ScreenElem> menu = new ArrayList<ScreenElem>();
     for (int i = 0; i < categories.size(); i++) {
       JSONObject category = categories.get(i);
       String title = category.getString("title");
@@ -31,12 +51,9 @@ public class TriviaView {
                           140 + (Utils.boolToInt(i >= 2) * (h + p)),
                           w, h, new Gradient(topColor, botColor), white, title, 40));
     }
-    this.menu.add(new ScreenElem(width - 50, 20, 30, 20, new Gradient(white, white),
+    menu.add(new ScreenElem(width - 50, 20, 30, 20, new Gradient(white, white),
         color(#656565), "Exit", 20));
-    // PLAYING
-    this.playing = new ArrayList<AnswerButton>();
-    this.question = null;
-    this.image = null;
+    return menu;
   }
   
   /**
@@ -53,8 +70,9 @@ public class TriviaView {
       case MENU:
         displayMenu();
         break;
+      case REVEAL:
       case PLAYING:
-        displayPlaying();
+        displayPlaying(gameState);
         break;
       case OVER:
         displayOver();
@@ -90,21 +108,27 @@ public class TriviaView {
   /**
    * Displays the current question.
    */
-  private void displayPlaying() {
-    textFont(medium);
+  private void displayPlaying(GameState gameState) {
+    // TODO
+    // REMOVE HOVER STATES AND ABILITY TO CLICK MORE THAN ONE DURING REVEAL STAGE
+    // REVEAL INCORRECT/CORRECT ONE
     boolean hovering = false;
     image(this.image, 0, 300);
+    textFont(bold);
     this.question.display();
+    textFont(medium);
     for (AnswerButton b : playing) {
       b.display();
       if (b.hover()) {
         hovering = true;
       }
     }
-    if (hovering) {
-      cursor(HAND);
-    } else {
-      cursor(ARROW);
+    if (gameState.equals(GameState.PLAYING)) {
+      if (hovering) {
+        cursor(HAND);
+      } else {
+        cursor(ARROW);
+      }
     }
   }
   
@@ -142,11 +166,13 @@ public class TriviaView {
     }
     Answer[] answers = question.getAnswers();
     this.playing = new ArrayList<AnswerButton>();
+    textFont(medium);
     for (int i = 0; i < answers.length; i++) {
       this.playing.add(new AnswerButton(400 + (Utils.boolToInt(i % 2 != 0) * 300),
                                         (Utils.boolToInt(i >= 2) * 300),
                                         300, 300, answers[i]));
     }
+    textFont(bold);
     this.question = new ScreenElem(0, 0, 400, 300, question.getGradient(),
         white, question.toString(), 40);
     this.image = draw.coverImage(question.getImage(), 400, 300);
@@ -157,12 +183,17 @@ public class TriviaView {
    *
    * @return true if an answer was chosen, false otherwise
    */
-  private boolean answerChosen() {
+  private Answer answerChosen() {
+    for (AnswerButton a : this.playing) {
+      if (a.getState().equals(ButtonState.CORRECT) || a.getState().equals(ButtonState.WRONG)) {
+        return a.getAnswer();
+      }
+    }
     // TODO
     // Change boolean to return the answer if chosen, or null if not
     // if null, that means answer has not been chosen
     // if answer is correct, add 1 to score in model
     // if answer is false, don't mutate score
-    return true;
+    return null;
   }
 }

@@ -6,6 +6,7 @@ public class Question {
   private final String question;
   private final Answer[] answers;
   private final PImage img;
+  private final PImage revealImg;
   private final Gradient gradient;
   
   /**
@@ -19,10 +20,10 @@ public class Question {
    *         or if the answers array contains a null
    */
   public Question(int id, String question, String[] answers,
-                  int answerIndex, String imgUrl, Gradient gradient)
-                  throws IllegalArgumentException {
-    if (question == null || imgUrl == null || Utils.arrIsOrContainsNull(answers)
-        || gradient == null) {
+                  int answerIndex, String imgUrl, String revealUrl, 
+                  Gradient gradient) throws IllegalArgumentException {
+    if (question == null || imgUrl == null || revealUrl == null
+        || Utils.arrIsOrContainsNull(answers) || gradient == null) {
       throw new IllegalArgumentException("Cannot pass uninitialized arguments.");
     }
     this.id = id;
@@ -32,6 +33,7 @@ public class Question {
       this.answers[i] = new Answer((this.id * 100) + i, answers[i], i == answerIndex);
     }
     this.img = loadImage(imgUrl);
+    this.revealImg = loadImage(revealUrl);
     this.gradient = gradient;
   }
   
@@ -79,11 +81,30 @@ public class Question {
     return this.answers;
   }
   
+  /**
+   * Gets the gradient of this question.
+   *
+   * @return this question's gradient
+   */
   public Gradient getGradient() {
     return this.gradient;
   }
   
+  /**
+   * Gets the image that goes along with this question.
+   *
+   * @return this question's image
+   */
   public PImage getImage() {
     return this.img;
+  }
+  
+  /**
+   * Gets the image that appears after a question is answered.
+   *
+   * @return this question's reveal image
+   */
+  public PImage getRevealImage() {
+    return this.revealImg;
   }
 }

@@ -37,8 +37,20 @@ public final class DrawUtils {
     return str;
   }
   
-  // fits an image to the desired dimensions
-  public PImage fitImage(PImage img, int maxWidth, int maxHeight) {
+  /**
+   * Fits the given image to the desired dimensions.
+   * 
+   * @param img         the image to be fitted
+   * @param maxWidth    the maximum width of the image
+   * @param maxHeight   the maximum height of the image
+   * @return the fitted image
+   * @throws IllegalArgumentException if img is uninitialized, or if the
+   * maxWidth or maxHeight are negative
+   */
+  public PImage fitImage(PImage img, int maxWidth, int maxHeight) throws IllegalArgumentException {
+    if (img == null || maxWidth < 0 || maxHeight < 0) {
+      throw new IllegalArgumentException("Cannot use uninitialized images or negative dimensions.");
+    }
     int imgWidth = img.width;
     int imgHeight = img.height;
     // scales an image's height in order to fit the max width
@@ -58,19 +70,28 @@ public final class DrawUtils {
     return img;
   }
   
-  // fits an image to the desired dimensions
-  public PImage coverImage(PImage img, int desWidth, int desHeight) {
-    img = fitImage(img, desWidth, desHeight);
+  /**
+   * Covers the given image over the desired dimensions.
+   * 
+   * @param img         the image to be covered
+   * @param minWidth    the minimum width of the image
+   * @param minHeight   the minimum height of the image
+   * @return the covered image
+   * @throws IllegalArgumentException if img is uninitialized, or if the
+   * minWidth or minHeight are negative
+   */
+  public PImage coverImage(PImage img, int minWidth, int minHeight) throws IllegalArgumentException {
+    img = fitImage(img, minWidth, minHeight);
     int imgWidth = img.width;
     int imgHeight = img.height;
-    if (imgWidth < desWidth && imgWidth > 0) {
-      float scaleRatio = float(desWidth) / float(imgWidth);
-      imgWidth = desWidth;
+    if (imgWidth < minWidth && imgWidth > 0) {
+      float scaleRatio = float(minWidth) / float(imgWidth);
+      imgWidth = minWidth;
       imgHeight = int(imgHeight * scaleRatio);
     }
-    if (imgHeight < desHeight && imgHeight > 0) {
-      float scaleRatio = float(desHeight) / float(imgHeight);
-      imgHeight = desHeight;
+    if (imgHeight < minHeight && imgHeight > 0) {
+      float scaleRatio = float(minHeight) / float(imgHeight);
+      imgHeight = minHeight;
       imgWidth = int(imgWidth * scaleRatio);
     }
     img.resize(imgWidth, imgHeight);

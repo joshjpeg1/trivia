@@ -40,12 +40,15 @@ public class AnswerButton extends ScreenElem {
     this.state = this.getState();
     switch (this.state) {
       case HOVER:
+        stroke(this.bg.getTop());
         fill(this.hoverColor);
         break;
       case CORRECT:
+        stroke(this.correctColor);
         fill(this.correctColor);
         break;
       case WRONG:
+        stroke(this.wrongColor);
         fill(this.wrongColor);
         break;
       default:
@@ -68,7 +71,7 @@ public class AnswerButton extends ScreenElem {
    *
    * @return the current state of the button
    */
-  private ButtonState getState() {
+  protected ButtonState getState() {
     if (this.state.equals(ButtonState.CORRECT)
         || this.state.equals(ButtonState.WRONG)) {
       return this.state;
@@ -82,6 +85,7 @@ public class AnswerButton extends ScreenElem {
     return ButtonState.NONE;
   }
   
-  
-  
+  public Answer getAnswer() {
+    return this.answer;
+  }
 }

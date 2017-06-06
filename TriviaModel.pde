@@ -8,6 +8,8 @@ public class TriviaModel {
   private GameState gameState;
   private ArrayList<JSONObject> categories;
   private int currentQuestion = 0;
+  private int timer;
+  private static final int REVEAL_WAIT = 3000;
   
   /**
    * Constructs a new {@code TriviaModel} object.
@@ -27,6 +29,7 @@ public class TriviaModel {
       this.categories.add(categ.getJSONObject(i));
     }
     this.view = new TriviaView(this.categories);
+    this.timer = 0;
   }
   
   /**
@@ -60,7 +63,8 @@ public class TriviaModel {
         }
         System.out.println(obj);
         this.questions[i] = new Question(i, obj.getString("question"),
-            answers, obj.getInt("correct"), obj.getString("image"), gradient);
+            answers, obj.getInt("correct"), obj.getString("image"),
+            obj.getString("reveal"), gradient);
       }
       this.gameState = GameState.PLAYING;
       this.currentQuestion = 1;
@@ -73,6 +77,11 @@ public class TriviaModel {
    */
   public void display() {
     this.view.display(this.gameState);
+    if (this.gameState.equals(GameState.REVEAL)) {
+      if (millis() - this.timer >= this.REVEAL_WAIT) {
+        this.nextQuestion();
+      }
+    }
   }
   
   /**
@@ -85,7 +94,8 @@ public class TriviaModel {
         menuUpdate(view.getCategory());
         break;
       case PLAYING:
-        nextQuestion();
+        playingUpdate();
+        break;
       default:
         break;
     }
@@ -111,15 +121,26 @@ public class TriviaModel {
    * Helper to the update method. Advances to the next question after
    * an answer was chosen for the current question.
    */
-  private void nextQuestion() {
+  private void playingUpdate() {
     if (currentQuestion == this.questions.length) {
       this.currentQuestion = 0;
       this.gameState = GameState.OVER;
       return;
     }
-    if (this.view.answerChosen()) {
-      this.currentQuestion++;
-      this.view.nextQuestion(this.questions[currentQuestion - 1]);
+    Answer ans = this.view.answerChosen();
+    if (ans != null) {
+      if (ans.isCorrect()) {
+        this.score++;
+      }
+      this.gameState = GameState.REVEAL;
+      this.timer = millis();
     }
+  }
+  
+  private void nextQuestion() {
+    this.gameState = GameState.PLAYING;
+    this.timer = 0;
+    this.currentQuestion++;
+    this.view.nextQuestion(this.questions[currentQuestion - 1]);
   }
 }
