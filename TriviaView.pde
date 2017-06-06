@@ -7,16 +7,19 @@ public class TriviaView {
   private final PFont medium = loadFont("medium.vlw");
   private final color white = color(255);
   private final color black = color(0);
+  private final DrawUtils draw = new DrawUtils();
   
-  private final ArrayList<Button> menu;
+  private final ArrayList<ScreenElem> menu;
   private ArrayList<AnswerButton> playing;
+  private ScreenElem question;
+  private PImage image;
   
   public TriviaView(ArrayList<JSONObject> categories) {
     // MENU
     int w = 340; //width
     int h = 170; //height
     int p = 40; //padding
-    menu = new ArrayList<Button>();
+    this.menu = new ArrayList<ScreenElem>();
     for (int i = 0; i < categories.size(); i++) {
       JSONObject category = categories.get(i);
       String title = category.getString("title");
@@ -24,13 +27,16 @@ public class TriviaView {
       JSONArray bot = category.getJSONObject("gradient").getJSONArray("bot");
       color topColor = color(top.getInt(0), top.getInt(1), top.getInt(2));
       color botColor = color(bot.getInt(0), bot.getInt(1), bot.getInt(2));
-      menu.add(new Button(130 + (Utils.boolToInt(i % 2 != 0) * (w + p)),
+      menu.add(new ScreenElem(130 + (Utils.boolToInt(i % 2 != 0) * (w + p)),
                           140 + (Utils.boolToInt(i >= 2) * (h + p)),
-                          w, h, topColor, botColor, white, title, 40));
+                          w, h, new Gradient(topColor, botColor), white, title, 40));
     }
-    menu.add(new Button(width - 50, 20, 30, 20, white, white, color(#656565), "Exit", 20));
-   // PLAYING
-   playing = new ArrayList<AnswerButton>();
+    this.menu.add(new ScreenElem(width - 50, 20, 30, 20, new Gradient(white, white),
+        color(#656565), "Exit", 20));
+    // PLAYING
+    this.playing = new ArrayList<AnswerButton>();
+    this.question = null;
+    this.image = null;
   }
   
   /**
@@ -68,7 +74,7 @@ public class TriviaView {
     fill(black);
     text("Trivia", 130, 120);
     boolean hovering = false;
-    for (Button b : menu) {
+    for (ScreenElem b : menu) {
       b.display();
       if (b.hover()) {
         hovering = true;
@@ -87,6 +93,8 @@ public class TriviaView {
   private void displayPlaying() {
     textFont(medium);
     boolean hovering = false;
+    image(this.image, 0, 300);
+    this.question.display();
     for (AnswerButton b : playing) {
       b.display();
       if (b.hover()) {
@@ -115,7 +123,7 @@ public class TriviaView {
    * if no button has been clicked
    */
   public String getCategory() {
-    for (Button b : menu) {
+    for (ScreenElem b : menu) {
       if (b.hover()) {
         return b.toString();
       }
@@ -139,6 +147,9 @@ public class TriviaView {
                                         (Utils.boolToInt(i >= 2) * 300),
                                         300, 300, answers[i]));
     }
+    this.question = new ScreenElem(0, 0, 400, 300, question.getGradient(),
+        white, question.toString(), 40);
+    this.image = draw.coverImage(question.getImage(), 400, 300);
   }
   
   /**
@@ -147,6 +158,11 @@ public class TriviaView {
    * @return true if an answer was chosen, false otherwise
    */
   private boolean answerChosen() {
+    // TODO
+    // Change boolean to return the answer if chosen, or null if not
+    // if null, that means answer has not been chosen
+    // if answer is correct, add 1 to score in model
+    // if answer is false, don't mutate score
     return true;
   }
 }

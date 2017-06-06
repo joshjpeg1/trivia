@@ -37,12 +37,19 @@ public class TriviaModel {
    */
   private void initQuestions(String category) {
     JSONArray arr = null;
+    JSONArray topGrad = null;
+    JSONArray botGrad = null;
     for (JSONObject o : this.categories) {
       if (o.getString("title").equals(category)) {
         arr = o.getJSONArray("questions");
+        topGrad = o.getJSONObject("gradient").getJSONArray("top");
+        botGrad = o.getJSONObject("gradient").getJSONArray("bot");
       }
     }
     if (arr != null) {
+      Gradient gradient = new Gradient(color(topGrad.getInt(0), 
+          topGrad.getInt(1), topGrad.getInt(2)),
+          color(botGrad.getInt(0), botGrad.getInt(1), botGrad.getInt(2)));
       this.questions = new Question[arr.size()];
       for (int i = 0; i < arr.size(); i++) {
         JSONObject obj = arr.getJSONObject(i);
@@ -51,8 +58,9 @@ public class TriviaModel {
         for (int j = 0; j < a.size(); j++) {
           answers[j] = a.getString(j);
         }
+        System.out.println(obj);
         this.questions[i] = new Question(i, obj.getString("question"),
-            answers, obj.getInt("correct"), obj.getString("image"));
+            answers, obj.getInt("correct"), obj.getString("image"), gradient);
       }
       this.gameState = GameState.PLAYING;
       this.currentQuestion = 1;

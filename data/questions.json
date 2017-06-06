@@ -12,9 +12,10 @@
                 "answers": [
                     "I just want to be perfect.",
                     "But again, truth be told, if you're looking for the guilty you need only look into a mirror.",
-                    "Bad luck isn't brought by broken mirrors, but by broken minds."
+                    "Bad luck isn't brought by broken mirrors, but by broken minds.",
+                    "My ass may be dumb, but I ain't no dumbass."
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+                "image": "https://33hpwq10j9luq8gl43e62q4e-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/1pNZvfUTx3Yquy6XWBg8TDw.jpeg"
             },
             {
                 "question": "Pulp Fiction",
@@ -24,7 +25,7 @@
                     "Would you give a guy a foot massage?",
                     "My ass may be dumb, but I ain't no dumbass."
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+                "image": "https://pmd205465tn-a.akamaihd.net/Miramax/251/767/ExMjlvYToStXO4a_C_Vx0D2ZzNZGG1Ql_h264_3800_webthumb_640x360_640x360_375794755525.jpg"
             },
             {
                 "question": "Short Circuit",
@@ -34,7 +35,7 @@
                     "I know now why you cry. But it's something I can never do.",
                     "Johnny Five is alive!"
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+                "image": "https://i.kinja-img.com/gawker-media/image/upload/s--e9uHBwwC--/c_scale,f_auto,fl_progressive,q_80,w_800/jvybdug3gptiaxqz8mvt.jpg"
             },
             {
                 "question": "The Shining",
@@ -45,7 +46,7 @@
                     "Oh, good Lord! So young. So pretty. Oh, what monster could have done this?"
 
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+                "image": "https://justdreadfull.files.wordpress.com/2015/10/shining-1.jpg"
             },
             {
                 "question": "The Royal Tenenbaums",
@@ -55,7 +56,7 @@
                     "They're not scared of you. They're scared of what you represent to 'em.",
                     "I love you, but you don't know what you're talking about."
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+                "image": "https://images-na.ssl-images-amazon.com/images/S/sgp-catalog-images/region_US/starz_svod-1477-Full-Image_GalleryBackground-en-US-1483994509973._SX940_.jpg"
             },
             {
                 "question": "The Third Man",
@@ -65,7 +66,7 @@
                     "We are not so very different, you and I. We've both spent our lives looking for the weaknesses in one another.",
                     "In Switzerland, they had brotherly love. They had 500 years of democracy and peace. And what did that produce? The cuckoo clock."
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+                "image": "https://www.burgkino.at/sites/default/files/images/2016/third-man-6.jpg"
             },
             {
                 "question": "District 9",
@@ -75,7 +76,7 @@
                     "We’d better get back, ‘cause it’ll be dark soon, and they mostly come at night… mostly.",
                     "Get your fokkin' tentacle out of my face!"
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+                "image": "http://img.cinemablend.com/cb/b/b/c/3/b/5/bbc3b58d013ef751a39a544dfbeda2ca71a1e07cb021c0001c75d9193aacfa90.jpg"
             },
             {
                 "question": "Oldboy",
@@ -85,7 +86,7 @@
                     "The bad image kidnappers get is because of kids getting killed. But we're different. Give us the money and we'll return the kid pronto.",
                     "Listen carefully. Everyone make mistakes. But if you committed a sin, you have to make an atonement for that sin."
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+                "image": "https://s.yimg.com/ny/api/res/1.2/ySO6lYV0tOxEWhl.6mBFoA--/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9ODAwO2lsPXBsYW5l/http://media.zenfs.com/en-US/blogs/movie-news/369bdabfb9952127440f6a706700d106.jpg"
             },
             {
                 "question": "Se7en",
@@ -95,7 +96,7 @@
                     "What's in the box?!",
                     "Sanity's not a choice, Marshall. You can't just choose to get over it."
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+                "image": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjE2MDQzMTU1NV5BMl5BanBnXkFtZTgwNDE2NTU0NzE@._V1_CR0,59,640,360_AL_UX477_CR0,0,477,268_AL_.jpg"
             },
             {
                 "question": "Scarface",
@@ -105,27 +106,7 @@
                     "I have stones to sell, fat to chew and many different men to see about many different dogs, so if I am not rushing you…",
                     "In Sicily, women are more dangerous than shotguns."
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
-            },
-            {
-                "question": "Candyman",
-                "correct": 0,
-                "answers": [
-                    "They will say that I have shed innocent blood. What's blood for, if not for shedding?",
-                    "We just cut up our girlfriend with a chainsaw. Does that sound 'fine'?",
-                    "I'm your number one fan. There's nothing to worry about. You're going to be just fine. I will take good care of you. I'm your number one fan."
-                ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
-            },
-            {
-                "question": "A Clockwork Orange",
-                "correct": 2,
-                "answers": [
-                    "Hate to tell you this buddy, but you have to wear clothes to work. There's a law or something.",
-                    "We gotta win that fight tonight. We gotta get even with those Socs! Let's do it for Johnny, man. We'll do it for Johnny!",
-                    "It's funny how the colors of the real world only seem really real when you viddy them on the screen."
-                ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+                "image": "http://assets.nydailynews.com/polopoly_fs/1.2460010.1449678583!/img/httpImage/image.jpg_gen/derivatives/article_750/people-pacino-scarface.jpg"
             },
             {
                 "question": "Drive",
@@ -135,7 +116,7 @@
                     "Take comfort in knowing you never had a choice.",
                     "I can't drive you around while you're killing folks. It ain't my job!"
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+                "image": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTU4MjUyOTczOF5BMl5BanBnXkFtZTcwNTE0MjQyNg@@._V1_CR0,59,640,360_AL_UX477_CR0,0,477,268_AL_.jpg"
             },
             {
                 "question": "Top Gun",
@@ -145,7 +126,7 @@
                     "You can be my wingman any time.",
                     "You risked the lives of some damn fine pilots... and that's *my* job!"
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+                "image": "https://www.thewrap.com/wp-content/uploads/2016/05/Top-Gun-Tom-Cruise.png"
             },
             {
                 "question": "King of Comedy",
@@ -155,7 +136,7 @@
                     "Loneliness has followed me my whole life, everywhere. In bars, in cars, sidewalks, stores, everywhere. There's no escape. I'm God's lonely man.",
                     "Thank God for the rain to wash the trash off the sidewalk."
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+                "image": "http://1.bp.blogspot.com/-lmM1m1GAW0o/U18qRLbINGI/AAAAAAAAJwo/m33mQEaiqMk/s1600/The-King-of-Comedy-ending.jpg"
             },
             {
                 "question": "2001: A Space Odyssey",
@@ -165,7 +146,7 @@
                     "On Earth, everywhere you go, the temperature is 75 degrees. Everything is the same; all the people are exactly the same. Now what kind of life is that?",
                     "I'm sorry, Dave. I'm afraid I can't do that."
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+                "image": "https://www.sfsymphony.org/getmedia/ee280956-c54f-41a5-b62d-a39c6b98e4e0/2001-Space-Odyssey?width=583&height=335&ext=.jpg"
             },
             {
                 "question": "Monty Python and the Holy Grail",
@@ -175,7 +156,7 @@
                     "He's not the Messiah. He's a very naughty boy! Now, piss off!",
                     "Look, I don't think it should be a sin, just for saying \"Jehovah\"."
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+                "image": "http://www.intriguing.com/mp/_pictures/grail/large/HolyGrail034.jpg"
             }
         ]
     },

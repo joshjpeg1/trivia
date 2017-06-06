@@ -1,7 +1,7 @@
 /**
  * Represents a button for an answer to a trivia question.
  */
-public class AnswerButton extends Button {
+public class AnswerButton extends ScreenElem {
   private Answer answer;
   private final color hoverColor;
   private final color correctColor;
@@ -20,7 +20,7 @@ public class AnswerButton extends Button {
    */
   public AnswerButton(int x, int y, float w, float h, Answer answer)
                       throws IllegalArgumentException {
-    super(x, y, w, h, color(255), color(255), color(0), "", 20);
+    super(x, y, w, h, new Gradient(color(255), color(255)), color(0), "", 20);
     this.hoverColor = color(#EDEDED);
     this.correctColor = color(#37CE8F);
     this.wrongColor = color(#EF7676);
@@ -50,7 +50,7 @@ public class AnswerButton extends Button {
         break;
       default:
         stroke(this.hoverColor);
-        fill(this.bg1);
+        fill(this.bg.getTop());
     }
     rect(this.x, this.y, this.w, this.h);
     if (this.state.equals(ButtonState.CORRECT)

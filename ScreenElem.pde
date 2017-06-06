@@ -1,7 +1,7 @@
 /**
  * Represents a button with a basic hover state.
  */
-public class Button {
+public class ScreenElem {
   protected final int x;
   protected final int y;
   protected final float w;
@@ -9,8 +9,7 @@ public class Button {
   protected String text;
   protected String displayText;
   protected final int textSize;
-  protected final color bg1;
-  protected final color bg2;
+  protected final Gradient bg;
   protected final color fill;
   protected final DrawUtils draw = new DrawUtils();
   
@@ -21,18 +20,17 @@ public class Button {
    * @param y          the starting y-coordinate
    * @param w          the width of the button
    * @param h          the height of the button
-   * @param bg1        the top color of the button gradient
-   * @param bg2        the bottom color of the button gradient
+   * @param bg         the background gradient of the button
    * @param fill       the fill color of the text
    * @param text       the (unformatted) text to be displayed in the button
    * @param textSize   the size of the text in the button
    * @throws IllegalArgumentException if the x, y, w, h, or textSize values are
    * negative or if the given text is uninitialized
    */
-  public Button(int x, int y, float w, float h, color bg1, color bg2,
+  public ScreenElem(int x, int y, float w, float h, Gradient bg,
                 color fill, String text, int textSize)
                 throws IllegalArgumentException {
-    if (x < 0 || y < 0 || w < 0 || h < 0 || textSize < 0 || text == null) {
+    if (x < 0 || y < 0 || w < 0 || h < 0 || bg == null || textSize < 0 || text == null) {
       throw new IllegalArgumentException("Cannot pass negative or "
           + "uninitialized values.");
     }
@@ -43,8 +41,7 @@ public class Button {
     this.textSize = textSize;
     this.text = text;
     this.displayText = this.draw.wrapText(this.text, (int) this.w, this.textSize);
-    this.bg1 = bg1;
-    this.bg2 = bg2;
+    this.bg = bg;
     this.fill = fill;
   }
   
@@ -59,12 +56,12 @@ public class Button {
   public void display() {
     textSize(textSize);
     textAlign(CENTER, CENTER);
-    if (this.bg1 == this.bg2) {
+    if (this.bg.flat()) {
       noStroke();
-      fill(this.bg1);
+      fill(this.bg.getTop());
       rect(this.x, this.y, this.w, this.h);
     } else {
-      draw.gradient(this.x, this.y, this.w, this.h, this.bg1, this.bg2);
+      this.bg.display(this.x, this.y, this.w, this.h);
     }
     fill(fill);
     text(this.displayText, this.x + (this.w / 2), this.y + (this.h / 2));

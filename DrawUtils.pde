@@ -5,32 +5,6 @@ public final class DrawUtils {
   /**
    * Draws a gradient in the specified space using the given colors.
    * 
-   * @param x      the starting x-position
-   * @param y      the starting y-position
-   * @param w      the width of the gradient
-   * @param h      the height of the gradient
-   * @param top    the top color
-   * @param bot    the bottom color
-   * @throws IllegalArgumentException if x, y, w, or h are negative
-   */
-  public void gradient(int x, int y, float w, float h, color top, color bot)
-                       throws IllegalArgumentException {
-    if (x < 0 || y < 0 || w < 0 || h < 0) {
-      throw new IllegalArgumentException("Cannot get gradient from "
-          + "negative parameters.");
-    }
-    noFill();
-    for (int i = y; i <= y + h; i++) {
-      float inter = map(i, y, y + h, 0, 1);
-      color c = lerpColor(top, bot, inter);
-      stroke(c);
-      line(x, i, x + w, i);
-    }
-  }
-  
-  /**
-   * Draws a gradient in the specified space using the given colors.
-   * 
    * @param str         the string to be wrapped
    * @param maxWidth    the max width of the new string
    * @param textSize    the width at which the text will be displayed
@@ -61,5 +35,45 @@ public final class DrawUtils {
       }
     }
     return str;
+  }
+  
+  // fits an image to the desired dimensions
+  public PImage fitImage(PImage img, int maxWidth, int maxHeight) {
+    int imgWidth = img.width;
+    int imgHeight = img.height;
+    // scales an image's height in order to fit the max width
+    if (imgWidth > maxWidth && imgWidth > 0) {
+      float scaleRatio = float(maxWidth) / float(imgWidth);
+      imgWidth = maxWidth;
+      imgHeight = int(imgHeight * scaleRatio);
+    }
+    // scales an image's width in order to fit the max height
+    if (imgHeight > maxHeight && imgHeight > 0) {
+      float scaleRatio = float(maxHeight) / float(imgHeight);
+      imgHeight = maxHeight;
+      imgWidth = int(imgWidth * scaleRatio);
+    }
+    // resizes the image to the new width and height
+    img.resize(imgWidth, imgHeight);
+    return img;
+  }
+  
+  // fits an image to the desired dimensions
+  public PImage coverImage(PImage img, int desWidth, int desHeight) {
+    img = fitImage(img, desWidth, desHeight);
+    int imgWidth = img.width;
+    int imgHeight = img.height;
+    if (imgWidth < desWidth && imgWidth > 0) {
+      float scaleRatio = float(desWidth) / float(imgWidth);
+      imgWidth = desWidth;
+      imgHeight = int(imgHeight * scaleRatio);
+    }
+    if (imgHeight < desHeight && imgHeight > 0) {
+      float scaleRatio = float(desHeight) / float(imgHeight);
+      imgHeight = desHeight;
+      imgWidth = int(imgWidth * scaleRatio);
+    }
+    img.resize(imgWidth, imgHeight);
+    return img;
   }
 }

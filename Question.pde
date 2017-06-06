@@ -6,6 +6,7 @@ public class Question {
   private final String question;
   private final Answer[] answers;
   private final PImage img;
+  private final Gradient gradient;
   
   /**
    * Constructs a new {@code Question} object.
@@ -18,8 +19,10 @@ public class Question {
    *         or if the answers array contains a null
    */
   public Question(int id, String question, String[] answers,
-                  int answerIndex, String imgUrl) throws IllegalArgumentException {
-    if (question == null || imgUrl == null || Utils.arrIsOrContainsNull(answers)) {
+                  int answerIndex, String imgUrl, Gradient gradient)
+                  throws IllegalArgumentException {
+    if (question == null || imgUrl == null || Utils.arrIsOrContainsNull(answers)
+        || gradient == null) {
       throw new IllegalArgumentException("Cannot pass uninitialized arguments.");
     }
     this.id = id;
@@ -29,6 +32,7 @@ public class Question {
       this.answers[i] = new Answer((this.id * 100) + i, answers[i], i == answerIndex);
     }
     this.img = loadImage(imgUrl);
+    this.gradient = gradient;
   }
   
   @Override
@@ -49,9 +53,7 @@ public class Question {
   
   @Override
   public String toString() {
-    String str = this.id + "\n" + this.question + "\n";
-    str += Utils.arrToString(this.answers) + "\n";
-    return str;
+    return this.question;
   }
   
   /**
@@ -75,5 +77,13 @@ public class Question {
    */
   public Answer[] getAnswers() {
     return this.answers;
+  }
+  
+  public Gradient getGradient() {
+    return this.gradient;
+  }
+  
+  public PImage getImage() {
+    return this.img;
   }
 }
