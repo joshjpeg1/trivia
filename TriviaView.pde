@@ -7,10 +7,12 @@ public class TriviaView {
   private final PFont medium = loadFont("medium.vlw");
   private final color white = color(255);
   private final color black = color(0);
+  private final color gray = color(120);
   private final DrawUtils draw = new DrawUtils();
   
   private final ArrayList<ScreenElem> menu;
   private ArrayList<AnswerButton> playing;
+  private ArrayList<ScreenElem> over;
   private ScreenElem question;
   private PImage image;
   
@@ -22,14 +24,17 @@ public class TriviaView {
   public TriviaView(ArrayList<JSONObject> categories) throws IllegalArgumentException {
     this.menu = this.initMenu(categories);
     this.playing = new ArrayList<AnswerButton>();
+    this.over = this.initOver();
     this.question = null;
     this.image = null;
   }
   
   /**
-   * Initializes and creates all of the menu buttons.
+   * Initializes and creates all of the menu elements, including category and
+   * exit buttons.
    *
    * @param categories    a list of the JSON data for the different categories
+   * @return a list of all of the menu elements
    */
   private ArrayList<ScreenElem> initMenu(ArrayList<JSONObject> categories) 
       throws IllegalArgumentException {
@@ -56,10 +61,20 @@ public class TriviaView {
     return menu;
   }
   
+  private ArrayList<ScreenElem> initOver() {
+    ArrayList<ScreenElem> over = new ArrayList<ScreenElem>();
+    over.add(null);
+    over.add(new ScreenElem(width - 50, 20, 30, 20, new Gradient(white, white),
+        color(#656565), "Replay", 20));
+    over.add(new ScreenElem(width - 50, 40, 30, 20, new Gradient(white, white),
+        color(#656565), "Menu", 20));
+    return over;
+  }
+  
   /**
    * Displays the current game state.
    */
-  public void display(GameState gameState) {
+  public void display(GameState gameState, int score, int currentQuestion) {
     if (gameState == null) {
       throw new IllegalArgumentException("Cannot pass null GameState.");
     }
@@ -75,7 +90,7 @@ public class TriviaView {
         displayPlaying(gameState);
         break;
       case OVER:
-        displayOver();
+        displayOver(score, currentQuestion);
         break;
       default:
         break;
@@ -93,7 +108,7 @@ public class TriviaView {
     text("Trivia", 130, 120);
     boolean hovering = false;
     for (ScreenElem b : menu) {
-      b.display();
+      b.display(false);
       if (b.hover()) {
         hovering = true;
       }
@@ -109,16 +124,13 @@ public class TriviaView {
    * Displays the current question.
    */
   private void displayPlaying(GameState gameState) {
-    // TODO
-    // REMOVE HOVER STATES AND ABILITY TO CLICK MORE THAN ONE DURING REVEAL STAGE
-    // REVEAL INCORRECT/CORRECT ONE
     boolean hovering = false;
     image(this.image, 0, 300);
     textFont(bold);
-    this.question.display();
+    this.question.display(false);
     textFont(medium);
     for (AnswerButton b : playing) {
-      b.display();
+      b.display(gameState.equals(GameState.REVEAL));
       if (b.hover()) {
         hovering = true;
       }
@@ -129,14 +141,27 @@ public class TriviaView {
       } else {
         cursor(ARROW);
       }
+    } else {
+      cursor(ARROW);
     }
   }
   
   /**
    * Displays the game over state.
    */
-  private void displayOver() {
-    return;
+  private void displayOver(int score, int totalQuestions) {
+    fill(black);
+    textAlign(LEFT, BOTTOM);
+    textFont(bold);
+    textSize(60);
+    String scoreText = Integer.toString(score);
+    text(scoreText, 30, height - 200);
+    fill(gray);
+    text("/" + totalQuestions, 30 + textWidth(scoreText), height - 200);
+    textFont(medium);
+    textSize(40);
+    fill(black);
+    text("You scored", 30, height - 260);
   }
   
   /**
@@ -176,6 +201,10 @@ public class TriviaView {
     this.question = new ScreenElem(0, 0, 400, 300, question.getGradient(),
         white, question.toString(), 40);
     this.image = draw.coverImage(question.getImage(), 400, 300);
+    if (this.over.get(0) == null) {
+      this.over.set(0, new ScreenElem(30, height - 230, 150, 200, question.getGradient(),
+          white, question.toString(), 40));
+    }
   }
   
   /**
@@ -185,15 +214,10 @@ public class TriviaView {
    */
   private Answer answerChosen() {
     for (AnswerButton a : this.playing) {
-      if (a.getState().equals(ButtonState.CORRECT) || a.getState().equals(ButtonState.WRONG)) {
+      if (a.getState(false).equals(ButtonState.CORRECT) || a.getState(false).equals(ButtonState.WRONG)) {
         return a.getAnswer();
       }
     }
-    // TODO
-    // Change boolean to return the answer if chosen, or null if not
-    // if null, that means answer has not been chosen
-    // if answer is correct, add 1 to score in model
-    // if answer is false, don't mutate score
     return null;
   }
 }

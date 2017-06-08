@@ -49,6 +49,7 @@ public final class DrawUtils {
    */
   public PImage fitImage(PImage img, int maxWidth, int maxHeight) throws IllegalArgumentException {
     if (img == null || maxWidth < 0 || maxHeight < 0) {
+      System.out.println(maxWidth + " " + maxHeight);
       throw new IllegalArgumentException("Cannot use uninitialized images or negative dimensions.");
     }
     int imgWidth = img.width;

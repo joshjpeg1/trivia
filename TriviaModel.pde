@@ -9,7 +9,7 @@ public class TriviaModel {
   private ArrayList<JSONObject> categories;
   private int currentQuestion = 0;
   private int timer;
-  private static final int REVEAL_WAIT = 3000;
+  private static final int REVEAL_WAIT = 1000;
   
   /**
    * Constructs a new {@code TriviaModel} object.
@@ -22,7 +22,7 @@ public class TriviaModel {
     }
     
     this.score = 0;
-    this.gameState = /*GameState.PLAYING;*/GameState.MENU;
+    this.gameState = GameState.MENU;
     JSONArray categ = loadJSONArray(fileName);
     this.categories = new ArrayList<JSONObject>();
     for (int i = 0; i < categ.size(); i++) {
@@ -76,18 +76,14 @@ public class TriviaModel {
    * Calls the view to display the current game state.
    */
   public void display() {
-    this.view.display(this.gameState);
+    this.view.display(this.gameState, this.score, this.currentQuestion);
     if (this.gameState.equals(GameState.REVEAL)) {
-      if (millis() - this.timer >= this.REVEAL_WAIT) {
+      if (millis() - this.timer >= REVEAL_WAIT) {
         this.nextQuestion();
       }
     }
   }
   
-  /**
-   * Updates the model if a mouse is pressed, based on the current
-   * state of the game.
-   */
   public void update() {
     switch (gameState) {
       case MENU:
@@ -122,11 +118,7 @@ public class TriviaModel {
    * an answer was chosen for the current question.
    */
   private void playingUpdate() {
-    if (currentQuestion == this.questions.length) {
-      this.currentQuestion = 0;
-      this.gameState = GameState.OVER;
-      return;
-    }
+    this.display();
     Answer ans = this.view.answerChosen();
     if (ans != null) {
       if (ans.isCorrect()) {
@@ -138,6 +130,10 @@ public class TriviaModel {
   }
   
   private void nextQuestion() {
+    if (currentQuestion == this.questions.length) {
+      this.gameState = GameState.OVER;
+      return;
+    }
     this.gameState = GameState.PLAYING;
     this.timer = 0;
     this.currentQuestion++;

@@ -34,15 +34,14 @@ public class AnswerButton extends ScreenElem {
   }
   
   @Override
-  public void display() {
+  public void display(boolean reveal) {
     textSize(textSize);
     textAlign(CENTER, CENTER);
-    this.state = this.getState();
+    this.state = this.getState(reveal);
+    if (reveal && this.answer.isCorrect()) {
+      this.state = ButtonState.CORRECT;
+    }
     switch (this.state) {
-      case HOVER:
-        stroke(this.bg.getTop());
-        fill(this.hoverColor);
-        break;
       case CORRECT:
         stroke(this.correctColor);
         fill(this.correctColor);
@@ -51,6 +50,12 @@ public class AnswerButton extends ScreenElem {
         stroke(this.wrongColor);
         fill(this.wrongColor);
         break;
+      case HOVER:
+        if (!reveal) {
+          stroke(this.bg.getTop());
+          fill(this.hoverColor);
+          break;
+        }
       default:
         stroke(this.hoverColor);
         fill(this.bg.getTop());
@@ -71,13 +76,13 @@ public class AnswerButton extends ScreenElem {
    *
    * @return the current state of the button
    */
-  protected ButtonState getState() {
+  protected ButtonState getState(boolean reveal) {
     if (this.state.equals(ButtonState.CORRECT)
         || this.state.equals(ButtonState.WRONG)) {
       return this.state;
     }
     if (this.hover()) {
-      if (mousePressed) {
+      if (mousePressed && !reveal) {
         return ((answer.isCorrect()) ? ButtonState.CORRECT : ButtonState.WRONG);
       }
       return ButtonState.HOVER;
