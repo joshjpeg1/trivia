@@ -337,15 +337,16 @@
         },
         "questions": [
             {
-                "question": "Black Swan",
+                "question": "Which of these is Washington's capital?",
                 "correct": 0,
                 "answers": [
-                    "I just want to be perfect.",
-                    "But again, truth be told, if you're looking for the guilty you need only look into a mirror.",
-                    "Bad luck isn't brought by broken mirrors, but by broken minds."
+                    "Olympia",
+                    "Frankfort",
+                    "Madison",
+                    "Jackson"
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg",
-                "reveal": "http://i.imgur.com/iq0DHEK.png"
+                "image": "https://online.odu.edu/uploads/content/_medium/wa.png",
+                "reveal": "http://media.web.britannica.com/eb-media/69/64469-004-779BA6C7.gif"
             },
             {
                 "question": "Pulp Fiction",

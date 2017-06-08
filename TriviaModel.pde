@@ -161,6 +161,7 @@ public class TriviaModel {
     if (action != null) {
       if (action.equals("Menu")) {
         this.gameState = GameState.MENU;
+        this.score = 0;
       } else if (action.equals("Replay")) {
         this.currentQuestion = 0;
         this.score = 0;

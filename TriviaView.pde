@@ -239,7 +239,7 @@ public class TriviaView {
     }
     textFont(bold);
     this.question = new ScreenElem(0, 0, 400, 300, question.getGradient(),
-        white, question.toString(), 40);
+        white, question.toString(), 35);
     this.image = draw.coverImage(question.getImage(), 400, 300);
     this.revealImg = draw.coverImage(question.getRevealImage(), 400, 300);
     if (this.over.get(0) == null) {

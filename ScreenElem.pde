@@ -81,5 +81,4 @@ public class ScreenElem {
     return (mouseX >= (x + padX) && mouseX <= (w + x - padX))
         && (mouseY >= (y + padY) && mouseY <= (h + y - padY));
   }
-  
 }
