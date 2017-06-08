@@ -15,6 +15,7 @@ public class TriviaView {
   private ArrayList<ScreenElem> over;
   private ScreenElem question;
   private PImage image;
+  private PImage revealImg;
   
   /**
    * Constructs a new {@code TriviaView} object.
@@ -28,6 +29,7 @@ public class TriviaView {
     this.over = this.initOver();
     this.question = null;
     this.image = null;
+    this.revealImg = null;
   }
   
   /**
@@ -142,7 +144,11 @@ public class TriviaView {
    */
   private void displayPlaying(GameState gameState) {
     boolean hovering = false;
-    image(this.image, 0, 300);
+    if (gameState.equals(GameState.REVEAL)) {
+      image(this.revealImg, 0, 300);
+    } else {
+      image(this.image, 0, 300);
+    }
     textFont(bold);
     this.question.display(false, false);
     textFont(medium);
@@ -235,6 +241,7 @@ public class TriviaView {
     this.question = new ScreenElem(0, 0, 400, 300, question.getGradient(),
         white, question.toString(), 40);
     this.image = draw.coverImage(question.getImage(), 400, 300);
+    this.revealImg = draw.coverImage(question.getRevealImage(), 400, 300);
     if (this.over.get(0) == null) {
       this.over.set(0, new ScreenElem(30, height - 230, 400, 200, question.getGradient(),
           white, question.toString(), 40));

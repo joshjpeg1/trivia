@@ -12,7 +12,7 @@ public class TriviaModel {
   private Map<String, Question[]> categories;
   private int currentQuestion = 0;
   private int timer;
-  private static final int REVEAL_WAIT = 1000;
+  private static final int REVEAL_WAIT = 2000;
   
   /**
    * Constructs a new {@code TriviaModel} object.
