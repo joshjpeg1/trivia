@@ -19,9 +19,10 @@ public class TriviaView {
   /**
    * Constructs a new {@code TriviaView} object.
    *
-   * @param categories    a list of the JSON data for the different categories
+   * @param categories   a map of category titles and the array of Questions
+   *                     in that category
    */
-  public TriviaView(ArrayList<JSONObject> categories) throws IllegalArgumentException {
+  public TriviaView(Map<String, Question[]> categories) throws IllegalArgumentException {
     this.menu = this.initMenu(categories);
     this.playing = new ArrayList<AnswerButton>();
     this.over = this.initOver();
@@ -33,34 +34,40 @@ public class TriviaView {
    * Initializes and creates all of the menu elements, including category and
    * exit buttons.
    *
-   * @param categories    a list of the JSON data for the different categories
+   * @param categories   a map of category titles and the array of Questions
+   *                     in that category
    * @return a list of all of the menu elements
    */
-  private ArrayList<ScreenElem> initMenu(ArrayList<JSONObject> categories) 
+  private ArrayList<ScreenElem> initMenu(Map<String, Question[]> categories) 
       throws IllegalArgumentException {
-    if (categories == null || categories.contains(null)) {
+    if (categories == null) {
       throw new IllegalArgumentException("Cannot use given list.");
     }
     int w = 340; // width
     int h = 170; // height
     int p = 40;  // padding
     ArrayList<ScreenElem> menu = new ArrayList<ScreenElem>();
-    for (int i = 0; i < categories.size(); i++) {
-      JSONObject category = categories.get(i);
-      String title = category.getString("title");
-      JSONArray top = category.getJSONObject("gradient").getJSONArray("top");
-      JSONArray bot = category.getJSONObject("gradient").getJSONArray("bot");
-      color topColor = color(top.getInt(0), top.getInt(1), top.getInt(2));
-      color botColor = color(bot.getInt(0), bot.getInt(1), bot.getInt(2));
-      menu.add(new ScreenElem(130 + (Utils.boolToInt(i % 2 != 0) * (w + p)),
-                          140 + (Utils.boolToInt(i >= 2) * (h + p)),
-                          w, h, new Gradient(topColor, botColor), white, title, 40));
+    int index = 0;
+    for (String s : categories.keySet()) {
+      String title = s;
+      Gradient gradient = categories.get(title)[0].getGradient();
+      menu.add(new ScreenElem(130 + (Utils.boolToInt(index % 2 != 0) * (w + p)),
+                          140 + (Utils.boolToInt(index >= 2) * (h + p)),
+                          w, h, gradient, white, title, 40));
+      index++;
     }
     menu.add(new ScreenElem(width - 50, 20, 30, 20, new Gradient(white, white),
         color(#656565), "Exit", 20));
     return menu;
   }
   
+  /**
+   * Initializes and creates the buttons for the game over screen. Adds a null to the
+   * beginning of the list, which is later replaced with the category image when
+   * a game is initialized.
+   *
+   * @return a list of the elements on the game over screen
+   */
   private ArrayList<ScreenElem> initOver() {
     ArrayList<ScreenElem> over = new ArrayList<ScreenElem>();
     over.add(null);
@@ -74,6 +81,10 @@ public class TriviaView {
   
   /**
    * Displays the current game state.
+   *
+   * @param gameState         the current state of the game
+   * @param score             the user's current score in the game
+   * @param currentQuestion   the current question number
    */
   public void display(GameState gameState, int score, int currentQuestion) {
     if (gameState == null) {
@@ -100,7 +111,7 @@ public class TriviaView {
   }
   
   /**
-   * Displays the menu.
+   * Displays the main menu.
    */
   private void displayMenu() {
     textFont(bold);
@@ -124,6 +135,10 @@ public class TriviaView {
   
   /**
    * Displays the current question.
+   *
+   * @param gameState   the current state of the game, used to check if it's
+   *                    time to reveal the answers or if the computer is
+   *                    waiting for the user to release the mouse
    */
   private void displayPlaying(GameState gameState) {
     boolean hovering = false;
@@ -151,6 +166,9 @@ public class TriviaView {
   
   /**
    * Displays the game over state.
+   *
+   * @param score            the user's score after answering the questions
+   * @param totalQuestions   the total amount of questions in this round
    */
   private void displayOver(int score, int totalQuestions) {
     fill(black);
@@ -169,7 +187,7 @@ public class TriviaView {
     boolean hovering = false;
     for (ScreenElem b : this.over) {
       b.display(false, false);
-      if (b.hover()) {
+      if (b.hover() && this.over.indexOf(b) > 0) {
         hovering = true;
       }
     }
@@ -224,9 +242,11 @@ public class TriviaView {
   }
   
   /**
-   * Checks if an answer was chosen to the current question.
+   * Checks if an answer was chosen to the current question, and if so,
+   * returns the Answer object related to it.
    *
-   * @return true if an answer was chosen, false otherwise
+   * @return the answer chosen on the screen, or null if no answer has
+   * been chosen yet
    */
   public Answer answerChosen() {
     for (AnswerButton a : this.playing) {
@@ -237,6 +257,12 @@ public class TriviaView {
     return null;
   }
   
+  /**
+   * Gets the element that was clicked on the game over screen.
+   *
+   * @return the String representation of the element clicked,
+   * or null if nothing was clicked
+   */
   public String getOverAction() {
     for (ScreenElem b : this.over) {
       if (b.hover()) {

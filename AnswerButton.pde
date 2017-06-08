@@ -51,7 +51,7 @@ public class AnswerButton extends ScreenElem {
         fill(this.wrongColor);
         break;
       case HOVER:
-        if (!reveal && !noHover) {
+        if (!noHover && !reveal) {
           stroke(this.bg.getTop());
           fill(this.hoverColor);
           break;
@@ -74,6 +74,7 @@ public class AnswerButton extends ScreenElem {
   /**
    * Gets the current state of the button.
    *
+   * @param reveal   if true, prevents showing answers on mouse press
    * @return the current state of the button
    */
   protected ButtonState getState(boolean reveal) {

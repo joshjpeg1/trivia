@@ -1,3 +1,6 @@
+import java.util.Map;
+import java.util.List;
+
 /**
  * Represents the model for a trivia game.
  */
@@ -6,7 +9,7 @@ public class TriviaModel {
   private TriviaView view;
   private Question[] questions;
   private GameState gameState;
-  private ArrayList<JSONObject> categories;
+  private Map<String, Question[]> categories;
   private int currentQuestion = 0;
   private int timer;
   private static final int REVEAL_WAIT = 1000;
@@ -15,60 +18,65 @@ public class TriviaModel {
    * Constructs a new {@code TriviaModel} object.
    *
    * @param fileName      the name of the JSON file of questions
+   * @throws IllegalArgumentException if the given file name is uninitialized,
+   * does not point to a JSON file, or if the JSON file is formatted incorrectly
    */
-  public TriviaModel(String fileName) {
+  public TriviaModel(String fileName) throws IllegalArgumentException {
     if (fileName == null) {
-      throw new IllegalArgumentException("Cannot read fileName");
+      throw new IllegalArgumentException("Cannot read file name");
     }
-    
+    this.categories = new HashMap<String, Question[]>();
     this.score = 0;
     this.gameState = GameState.MENU;
-    JSONArray categ = loadJSONArray(fileName);
-    this.categories = new ArrayList<JSONObject>();
-    for (int i = 0; i < categ.size(); i++) {
-      this.categories.add(categ.getJSONObject(i));
+    JSONArray allCateg = loadJSONArray(fileName);
+    for (int i = 0; i < allCateg.size(); i++) {
+      JSONObject question = allCateg.getJSONObject(i);
+      String title = question.getString("title");
+      Question[] categQuestions;
+      categQuestions = initQuestions(question);
+      this.categories.put(title, categQuestions);
     }
     this.view = new TriviaView(this.categories);
     this.timer = 0;
   }
   
   /**
-   * Initializes the questions array to an array of {@code Question}
-   * objects, containing information from the JSON file.
+   * Creates an array of Question objects using the given JSON data
+   * about a category.
    *
-   * @param fileName      the name of the JSON file of questions
+   * @param category   a category of trivia retrieved from a JSON file
+   * @return an array of Question objects with data from the given JSON object
+   * @throws IllegalArgumentException if the given JSON object is formatted
+   * incorrectly
    */
-  private void initQuestions(String category) {
+  private Question[] initQuestions(JSONObject category)
+      throws IllegalArgumentException {
     JSONArray arr = null;
     JSONArray topGrad = null;
     JSONArray botGrad = null;
-    for (JSONObject o : this.categories) {
-      if (o.getString("title").equals(category)) {
-        arr = o.getJSONArray("questions");
-        topGrad = o.getJSONObject("gradient").getJSONArray("top");
-        botGrad = o.getJSONObject("gradient").getJSONArray("bot");
-      }
+    Question[] categQuestions;
+    arr = category.getJSONArray("questions");
+    topGrad = category.getJSONObject("gradient").getJSONArray("top");
+    botGrad = category.getJSONObject("gradient").getJSONArray("bot");
+    if (arr == null || topGrad == null || botGrad == null) {
+      throw new IllegalArgumentException("Invalid JSON Data.");
     }
-    if (arr != null) {
-      Gradient gradient = new Gradient(color(topGrad.getInt(0), 
-          topGrad.getInt(1), topGrad.getInt(2)),
-          color(botGrad.getInt(0), botGrad.getInt(1), botGrad.getInt(2)));
-      this.questions = new Question[arr.size()];
-      for (int i = 0; i < arr.size(); i++) {
-        JSONObject obj = arr.getJSONObject(i);
-        JSONArray a = obj.getJSONArray("answers");
-        String[] answers = new String[a.size()];
-        for (int j = 0; j < a.size(); j++) {
-          answers[j] = a.getString(j);
-        }
-        System.out.println(obj);
-        this.questions[i] = new Question(i, obj.getString("question"),
-            answers, obj.getInt("correct"), obj.getString("image"),
-            obj.getString("reveal"), gradient);
+    Gradient gradient = new Gradient(color(topGrad.getInt(0), 
+        topGrad.getInt(1), topGrad.getInt(2)),
+        color(botGrad.getInt(0), botGrad.getInt(1), botGrad.getInt(2)));
+    categQuestions = new Question[arr.size()];
+    for (int i = 0; i < arr.size(); i++) {
+      JSONObject obj = arr.getJSONObject(i);
+      JSONArray a = obj.getJSONArray("answers");
+      String[] answers = new String[a.size()];
+      for (int j = 0; j < a.size(); j++) {
+        answers[j] = a.getString(j);
       }
-      this.currentQuestion = 0;
-      this.nextQuestion();
+      categQuestions[i] = new Question(i, obj.getString("question"),
+          answers, obj.getInt("correct"), obj.getString("image"),
+          obj.getString("reveal"), gradient);
     }
+    return categQuestions;
   }
   
   /**
@@ -87,16 +95,20 @@ public class TriviaModel {
     }
   }
   
+  /**
+   * Updates the screen if a mouse has been pressed, based on
+   * the current game state.
+   */
   public void update() {
     switch (gameState) {
       case MENU:
-        menuUpdate(view.getCategory());
+        this.menuUpdate(view.getCategory());
         break;
       case PLAYING:
-        playingUpdate();
+        this.playingUpdate();
         break;
       case OVER:
-        overUpdate(view.getOverAction());
+        this.overUpdate(view.getOverAction());
         break;
       default:
         break;
@@ -107,47 +119,44 @@ public class TriviaModel {
    * Helper to the update method. If a category is clicked, the model
    * will start the game with that category's questions. If the exit
    * button is clicked, the game will exit.
+   *
+   * @param category   the String representation of the category pressed
    */
   private void menuUpdate(String category) {
     if (category != null) {
       if (category.equals("Exit")) {
         System.exit(0);
       } else {
-        System.out.println(category);
-        initQuestions(category);
+        this.questions = this.categories.get(category);
+        this.currentQuestion = 0;
+        this.nextQuestion();
       }
     }
   }
   
   /**
-   * Helper to the update method. Advances to the next question after
-   * an answer was chosen for the current question.
+   * Helper to the update method. Updates the playing screen and game
+   * state to reveal the answer if an answer was chosen.
    */
   private void playingUpdate() {
     if (this.timer == 0) {
       this.display();
       Answer ans = this.view.answerChosen();
       if (ans != null) {
-        if (ans.isCorrect()) {
-          this.score++;
-        }
+        this.score += Utils.boolToInt(ans.isCorrect());
         this.gameState = GameState.REVEAL;
         this.timer = millis();
       }
     }
   }
   
-  private void nextQuestion() {
-    if (currentQuestion == this.questions.length) {
-      this.gameState = GameState.OVER;
-      return;
-    }
-    this.gameState = GameState.WAIT_FOR_RELEASE;
-    this.timer = 0;
-    this.currentQuestion++;
-    this.view.nextQuestion(this.questions[currentQuestion - 1]);
-  }
-  
+  /**
+   * Helper to the update method. If the menu button was pressed,
+   * returns the user to the main menu. If the replay button was pressed,
+   * restarts the game.
+   *
+   * @param action   the String representation of the action pressed
+   */
   private void overUpdate(String action) {
     if (action != null) {
       if (action.equals("Menu")) {
@@ -158,5 +167,21 @@ public class TriviaModel {
         this.nextQuestion();
       }
     }
+  }
+  
+  /**
+   * Advances to the next question after an answer was chosen
+   * for the current question.
+   * If there are no more questions, changes game state to game over.
+   */
+  private void nextQuestion() {
+    if (currentQuestion == this.questions.length) {
+      this.gameState = GameState.OVER;
+      return;
+    }
+    this.gameState = GameState.WAIT_FOR_RELEASE;
+    this.timer = 0;
+    this.currentQuestion++;
+    this.view.nextQuestion(this.questions[currentQuestion - 1]);
   }
 }

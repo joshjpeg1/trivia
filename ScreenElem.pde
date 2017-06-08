@@ -52,6 +52,9 @@ public class ScreenElem {
   
   /**
    * Displays the button on the sketch.
+   *
+   * @param noHover   if true, don't display hover states
+   * @param reveal    if true, show correct answer
    */
   public void display(boolean noHover, boolean reveal) {
     textSize(textSize);

@@ -7,32 +7,33 @@
  * @version      0.1
  */
 
-private TriviaController controller;
+private TriviaModel model;
 
 /**
  * Sets up the program.
- * To change the questions asked, simply change the file name string
- * passed to the controller.
  */
 void setup() {
   size(1000, 600);
-  controller = new TriviaController("questions.json");
+  model = new TriviaModel("questions.json");
 }
 
 /**
  * Draws the current state of the game.
  */
 void draw() {
-  controller.display();
+  model.display();
 }
 
 /**
  * Handles a mouse press when the program is running.
  */
 void mousePressed() {
-  controller.mouseHandler();
+  model.update();
 }
 
+/**
+ * Handles a mouse drag (press and move) when the program is running.
+ */
 void mouseDragged() {
-  controller.mouseHandler();
+  model.update();
 }

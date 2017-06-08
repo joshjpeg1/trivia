@@ -21,26 +21,6 @@ public static final class Utils {
   }
   
   /**
-   * Constructs a string representation of an array.
-   *
-   * @param arr    the array to be represented
-   * @return a string representation of the given array, or
-   *         an empty string if the array is or contains null
-   */
-  public static <K> String arrToString(K[] arr) {
-    String str = "";
-    if (!arrIsOrContainsNull(arr)) {
-      for (int i = 0; i < arr.length; i++) {
-        str += arr[i].toString();
-        if (i < arr.length - 1) {
-          str += "\n";
-        }
-      }
-    }
-    return str;
-  }
-  
-  /**
    * Converts a boolean to an int value.
    *
    * @return 1 if the given boolean is true, 0 if false

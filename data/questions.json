@@ -260,7 +260,7 @@
                 "correct": 2,
                 "answers": [
                     "Garbodor",
-                    "Bibarel.",
+                    "Bibarel",
                     "Lickilicky",
                     "Ambipom"
                 ],
@@ -575,7 +575,8 @@
                     "Oh, good Lord! So young. So pretty. Oh, what monster could have done this?"
 
                 ],
-                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg"
+                "image": "http://lorempixel.com/output/abstract-q-c-640-480-10.jpg",
+                "reveal": "http://i.imgur.com/iq0DHEK.png"
             },
             {
                 "question": "The Royal Tenenbaums",
