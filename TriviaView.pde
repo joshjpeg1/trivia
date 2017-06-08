@@ -64,9 +64,10 @@ public class TriviaView {
   private ArrayList<ScreenElem> initOver() {
     ArrayList<ScreenElem> over = new ArrayList<ScreenElem>();
     over.add(null);
-    over.add(new ScreenElem(width - 50, 20, 30, 20, new Gradient(white, white),
+    int p = 30;
+    over.add(new ScreenElem(width - 70, 20, 50, 20, new Gradient(white, white),
         color(#656565), "Replay", 20));
-    over.add(new ScreenElem(width - 50, 40, 30, 20, new Gradient(white, white),
+    over.add(new ScreenElem(width - 70, 20 + p, 50, 20, new Gradient(white, white),
         color(#656565), "Menu", 20));
     return over;
   }
@@ -86,6 +87,7 @@ public class TriviaView {
         displayMenu();
         break;
       case REVEAL:
+      case WAIT_FOR_RELEASE:
       case PLAYING:
         displayPlaying(gameState);
         break;
@@ -108,7 +110,7 @@ public class TriviaView {
     text("Trivia", 130, 120);
     boolean hovering = false;
     for (ScreenElem b : menu) {
-      b.display(false);
+      b.display(false, false);
       if (b.hover()) {
         hovering = true;
       }
@@ -127,10 +129,11 @@ public class TriviaView {
     boolean hovering = false;
     image(this.image, 0, 300);
     textFont(bold);
-    this.question.display(false);
+    this.question.display(false, false);
     textFont(medium);
     for (AnswerButton b : playing) {
-      b.display(gameState.equals(GameState.REVEAL));
+      b.display(gameState.equals(GameState.WAIT_FOR_RELEASE),
+          gameState.equals(GameState.REVEAL));
       if (b.hover()) {
         hovering = true;
       }
@@ -155,13 +158,26 @@ public class TriviaView {
     textFont(bold);
     textSize(60);
     String scoreText = Integer.toString(score);
-    text(scoreText, 30, height - 200);
+    text(scoreText, 30, height - 250);
     fill(gray);
-    text("/" + totalQuestions, 30 + textWidth(scoreText), height - 200);
+    text("/" + totalQuestions, 30 + textWidth(scoreText), height - 250);
     textFont(medium);
     textSize(40);
     fill(black);
-    text("You scored", 30, height - 260);
+    text("You scored", 30, height - 310);
+    textFont(bold);
+    boolean hovering = false;
+    for (ScreenElem b : this.over) {
+      b.display(false, false);
+      if (b.hover()) {
+        hovering = true;
+      }
+    }
+    if (hovering) {
+      cursor(HAND);
+    } else {
+      cursor(ARROW);
+    }
   }
   
   /**
@@ -202,7 +218,7 @@ public class TriviaView {
         white, question.toString(), 40);
     this.image = draw.coverImage(question.getImage(), 400, 300);
     if (this.over.get(0) == null) {
-      this.over.set(0, new ScreenElem(30, height - 230, 150, 200, question.getGradient(),
+      this.over.set(0, new ScreenElem(30, height - 230, 400, 200, question.getGradient(),
           white, question.toString(), 40));
     }
   }
@@ -212,10 +228,19 @@ public class TriviaView {
    *
    * @return true if an answer was chosen, false otherwise
    */
-  private Answer answerChosen() {
+  public Answer answerChosen() {
     for (AnswerButton a : this.playing) {
       if (a.getState(false).equals(ButtonState.CORRECT) || a.getState(false).equals(ButtonState.WRONG)) {
         return a.getAnswer();
+      }
+    }
+    return null;
+  }
+  
+  public String getOverAction() {
+    for (ScreenElem b : this.over) {
+      if (b.hover()) {
+        return b.toString();
       }
     }
     return null;

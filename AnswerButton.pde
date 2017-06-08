@@ -34,10 +34,10 @@ public class AnswerButton extends ScreenElem {
   }
   
   @Override
-  public void display(boolean reveal) {
+  public void display(boolean noHover, boolean reveal) {
     textSize(textSize);
     textAlign(CENTER, CENTER);
-    this.state = this.getState(reveal);
+    this.state = this.getState(reveal || noHover);
     if (reveal && this.answer.isCorrect()) {
       this.state = ButtonState.CORRECT;
     }
@@ -51,7 +51,7 @@ public class AnswerButton extends ScreenElem {
         fill(this.wrongColor);
         break;
       case HOVER:
-        if (!reveal) {
+        if (!reveal && !noHover) {
           stroke(this.bg.getTop());
           fill(this.hoverColor);
           break;

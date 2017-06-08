@@ -53,7 +53,7 @@ public class ScreenElem {
   /**
    * Displays the button on the sketch.
    */
-  public void display(boolean reveal) {
+  public void display(boolean noHover, boolean reveal) {
     textSize(textSize);
     textAlign(CENTER, CENTER);
     if (this.bg.flat()) {
@@ -73,8 +73,8 @@ public class ScreenElem {
    * @return true if the mouse is hovering, false otherwise
    */
   public boolean hover() {
-    int padX = (int) this.w / 10;
-    int padY = (int) this.h / 10;
+    int padX = (this.w > 100) ? ((int) this.w / 20) : 0;
+    int padY = (this.h > 100) ? ((int) this.h / 20) : 0;
     return (mouseX >= (x + padX) && mouseX <= (w + x - padX))
         && (mouseY >= (y + padY) && mouseY <= (h + y - padY));
   }

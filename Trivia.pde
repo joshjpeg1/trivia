@@ -32,3 +32,7 @@ void draw() {
 void mousePressed() {
   controller.mouseHandler();
 }
+
+void mouseDragged() {
+  controller.mouseHandler();
+}

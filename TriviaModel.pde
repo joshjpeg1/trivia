@@ -66,9 +66,8 @@ public class TriviaModel {
             answers, obj.getInt("correct"), obj.getString("image"),
             obj.getString("reveal"), gradient);
       }
-      this.gameState = GameState.PLAYING;
-      this.currentQuestion = 1;
-      this.view.nextQuestion(this.questions[currentQuestion - 1]);
+      this.currentQuestion = 0;
+      this.nextQuestion();
     }
   }
   
@@ -81,6 +80,10 @@ public class TriviaModel {
       if (millis() - this.timer >= REVEAL_WAIT) {
         this.nextQuestion();
       }
+    } else if (this.gameState.equals(GameState.WAIT_FOR_RELEASE)) {
+      if (!mousePressed) {
+        this.gameState = GameState.PLAYING;
+      }
     }
   }
   
@@ -91,6 +94,9 @@ public class TriviaModel {
         break;
       case PLAYING:
         playingUpdate();
+        break;
+      case OVER:
+        overUpdate(view.getOverAction());
         break;
       default:
         break;
@@ -118,14 +124,16 @@ public class TriviaModel {
    * an answer was chosen for the current question.
    */
   private void playingUpdate() {
-    this.display();
-    Answer ans = this.view.answerChosen();
-    if (ans != null) {
-      if (ans.isCorrect()) {
-        this.score++;
+    if (this.timer == 0) {
+      this.display();
+      Answer ans = this.view.answerChosen();
+      if (ans != null) {
+        if (ans.isCorrect()) {
+          this.score++;
+        }
+        this.gameState = GameState.REVEAL;
+        this.timer = millis();
       }
-      this.gameState = GameState.REVEAL;
-      this.timer = millis();
     }
   }
   
@@ -134,9 +142,21 @@ public class TriviaModel {
       this.gameState = GameState.OVER;
       return;
     }
-    this.gameState = GameState.PLAYING;
+    this.gameState = GameState.WAIT_FOR_RELEASE;
     this.timer = 0;
     this.currentQuestion++;
     this.view.nextQuestion(this.questions[currentQuestion - 1]);
+  }
+  
+  private void overUpdate(String action) {
+    if (action != null) {
+      if (action.equals("Menu")) {
+        this.gameState = GameState.MENU;
+      } else if (action.equals("Replay")) {
+        this.currentQuestion = 0;
+        this.score = 0;
+        this.nextQuestion();
+      }
+    }
   }
 }
