@@ -26,7 +26,7 @@ public class TriviaView {
   public TriviaView(Map<String, Question[]> categories) throws IllegalArgumentException {
     this.menu = this.initMenu(categories);
     this.playing = new ArrayList<AnswerButton>();
-    this.over = this.initOver();
+    this.initOver();
     this.question = null;
     this.image = null;
     this.revealImg = null;
@@ -70,15 +70,14 @@ public class TriviaView {
    *
    * @return a list of the elements on the game over screen
    */
-  private ArrayList<ScreenElem> initOver() {
-    ArrayList<ScreenElem> over = new ArrayList<ScreenElem>();
-    over.add(null);
+  void initOver() {
+    this.over = new ArrayList<ScreenElem>();
+    this.over.add(null);
     int p = 30;
-    over.add(new ScreenElem(width - 70, 20, 50, 20, new Gradient(white, white),
+    this.over.add(new ScreenElem(width - 70, 20, 50, 20, new Gradient(white, white),
         color(#656565), "Replay", 20));
-    over.add(new ScreenElem(width - 70, 20 + p, 50, 20, new Gradient(white, white),
+    this.over.add(new ScreenElem(width - 70, 20 + p, 50, 20, new Gradient(white, white),
         color(#656565), "Menu", 20));
-    return over;
   }
   
   /**

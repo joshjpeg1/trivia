@@ -183,6 +183,7 @@ public class TriviaModel {
     this.gameState = GameState.WAIT_FOR_RELEASE;
     this.timer = 0;
     this.currentQuestion++;
+    this.view.initOver();
     this.view.nextQuestion(this.questions[currentQuestion - 1]);
   }
 }

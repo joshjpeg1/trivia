@@ -10,21 +10,22 @@
                 "question": "Black Swan",
                 "correct": 0,
                 "answers": [
-                    "I just want to be perfect.",
-                    "But again, truth be told, if you're looking for the guilty you need only look into a mirror.",
-                    "Bad luck isn't brought by broken mirrors, but by broken minds.",
-                    "My ass may be dumb, but I ain't no dumbass."
+                    "\"I just want to be perfect.\"",
+                    "\"But again, truth be told, if you're looking for the guilty you need only look into a mirror.\"",
+                    "\"Bad luck isn't brought by broken mirrors, but by broken minds.\"",
+                    "\"I'm fighting for something that's real for the first time in my life!\""
                 ],
                 "image": "https://33hpwq10j9luq8gl43e62q4e-wpengine.netdna-ssl.com/wp-content/uploads/2017/05/1pNZvfUTx3Yquy6XWBg8TDw.jpeg",
                 "reveal": "http://i.imgur.com/aUn1cME.gif"
             },
             {
                 "question": "Pulp Fiction",
-                "correct": 1,
+                "correct": 3,
                 "answers": [
-                    "I can't kill a lot with one sword!",
-                    "Would you give a guy a foot massage?",
-                    "My ass may be dumb, but I ain't no dumbass."
+                    "\"I can't kill a lot with one sword!\"",
+                    "\"My ass may be dumb, but I ain't no dumbass.\"",
+                    "\"It's only after we've lost everything that we're free to do anything.\"",
+                    "\"Would you give a guy a foot massage?\""
                 ],
                 "image": "https://pmd205465tn-a.akamaihd.net/Miramax/251/767/ExMjlvYToStXO4a_C_Vx0D2ZzNZGG1Ql_h264_3800_webthumb_640x360_640x360_375794755525.jpg",
                 "reveal": "https://cdn.meme.am/cache/instances/folder135/500x/8410135/angry-samuel-l-jackson-would-you-give-a-guy-a-foot-massage.jpg"
@@ -33,10 +34,10 @@
                 "question": "The Shining",
                 "correct": 1,
                 "answers": [
-                    "I'm a messenger of God. You're doomed if you stay here!",
-                    "Heeeeere's Johnny!",
-                    "Oh, good Lord! So young. So pretty. Oh, what monster could have done this?"
-
+                    "\"I'm a messenger of God. You're doomed if you stay here!\"",
+                    "\"Heeeeere's Johnny!\"",
+                    "\"Oh, good Lord! So young. So pretty. Oh, what monster could have done this?\"",
+                    "\"Supernatural, perhaps; baloney, perhaps not.\""
                 ],
                 "image": "http://cdn-static.denofgeek.com/sites/denofgeek/files/styles/article_width/public/2017/04/shining-2.jpg?itok=nwgoN3Pk",
                 "reveal": "https://justdreadfull.files.wordpress.com/2015/10/shining-1.jpg"
@@ -45,9 +46,10 @@
                 "question": "The Royal Tenenbaums",
                 "correct": 0,
                 "answers": [
-                    "Of course it's dark. It's a suicide note.",
-                    "They're not scared of you. They're scared of what you represent to 'em.",
-                    "I love you, but you don't know what you're talking about."
+                    "\"Of course it's dark. It's a suicide note.\"",
+                    "\"They're not scared of you. They're scared of what you represent to 'em.\"",
+                    "\"I love you, but you don't know what you're talking about.\"",
+                    "\"It would be a terrible mistake to go through life thinking that people are the sum total of what you see.\""
                 ],
                 "image": "https://images-na.ssl-images-amazon.com/images/S/sgp-catalog-images/region_US/starz_svod-1477-Full-Image_GalleryBackground-en-US-1483994509973._SX940_.jpg",
                 "reveal": "http://i.imgur.com/MKH5OpN.png"
@@ -56,31 +58,34 @@
                 "question": "District 9",
                 "correct": 2,
                 "answers": [
-                    "If they’re mortal, they must have mortal weaknesses. They’ll be stopped, somehow.",
-                    "We’d better get back, ‘cause it’ll be dark soon, and they mostly come at night… mostly.",
-                    "Get your fokkin' tentacle out of my face!"
+                    "\"If they’re mortal, they must have mortal weaknesses. They’ll be stopped, somehow.\"",
+                    "\"We’d better get back, ‘cause it’ll be dark soon, and they mostly come at night… mostly.\"",
+                    "\"Get your fokkin' tentacle out of my face!\"",
+                    "\"The pit is completely enclosed. And it's full of leathery objects, like eggs or something.\""
                 ],
                 "image": "http://i.imgur.com/EYv52lz.jpg",
                 "reveal": "http://img.cinemablend.com/cb/b/b/c/3/b/5/bbc3b58d013ef751a39a544dfbeda2ca71a1e07cb021c0001c75d9193aacfa90.jpg"
             },
             {
                 "question": "Se7en",
-                "correct": 1,
+                "correct": 3,
                 "answers": [
-                    "This is a game. All of this is for you. You're not investigating anything. You're a fucking rat in a maze.",
-                    "What's in the box?!",
-                    "Sanity's not a choice, Marshall. You can't just choose to get over it."
+                    "\"This is a game. All of this is for you. You're not investigating anything. You're a fucking rat in a maze.\"",
+                    "\"Sanity's not a choice, Marshall. You can't just choose to get over it.\"",
+                    "\"I... I need to know who he is. I... I need to stand there, I need to look him in the eye and I need to know that it's him.\"",
+                    "\"What's in the box?!\""
                 ],
                 "image": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjE2MDQzMTU1NV5BMl5BanBnXkFtZTgwNDE2NTU0NzE@._V1_CR0,59,640,360_AL_UX477_CR0,0,477,268_AL_.jpg",
                 "reveal": "https://papabrownie.files.wordpress.com/2015/03/whats-in-the-box.jpeg"
             },
             {
                 "question": "Scarface",
-                "correct": 0,
+                "correct": 3,
                 "answers": [
-                    "Okay. You wanna play rough? Say hello to my little friend!",
-                    "I have stones to sell, fat to chew and many different men to see about many different dogs, so if I am not rushing you…",
-                    "In Sicily, women are more dangerous than shotguns."
+                    "\"I have stones to sell, fat to chew and many different men to see about many different dogs, so if I am not rushing you...\"",
+                    "\"In Sicily, women are more dangerous than shotguns.\"",
+                    "\"I could have killed 'em all, I could've killed you.\"",
+                    "\"Okay. You wanna play rough? Say hello to my little friend!\""
                 ],
                 "image": "http://assets.nydailynews.com/polopoly_fs/1.2460010.1449678583!/img/httpImage/image.jpg_gen/derivatives/article_750/people-pacino-scarface.jpg",
                 "reveal": "https://sd.keepcalm-o-matic.co.uk/i-w600/keep-calm-and-say-hello-to-my-little-friend-99.jpg"
@@ -89,9 +94,10 @@
                 "question": "Top Gun",
                 "correct": 1,
                 "answers": [
-                    "That flying stunt today was pure madness. If there wasn't a lady present, I'd tear you apart like Christmas goose.",
-                    "You can be my wingman any time.",
-                    "You risked the lives of some damn fine pilots... and that's *my* job!"
+                    "\"That flying stunt today was pure madness. If there wasn't a lady present, I'd tear you apart like Christmas goose.\"",
+                    "\"You can be my wingman any time.\"",
+                    "\"You risked the lives of some damn fine pilots... and that's *my* job!\"",
+                    "\"Everything is unprecedented until it happens for the first time.\""
                 ],
                 "image": "https://www.thewrap.com/wp-content/uploads/2016/05/Top-Gun-Tom-Cruise.png",
                 "reveal": "http://i.imgur.com/HZHluPz.jpg"
@@ -100,9 +106,10 @@
                 "question": "King of Comedy",
                 "correct": 0,
                 "answers": [
-                    "Better to be king for a night than schmuck for a lifetime.",
-                    "Loneliness has followed me my whole life, everywhere. In bars, in cars, sidewalks, stores, everywhere. There's no escape. I'm God's lonely man.",
-                    "Thank God for the rain to wash the trash off the sidewalk."
+                    "\"Better to be king for a night than schmuck for a lifetime.\"",
+                    "\"Loneliness has followed me my whole life, everywhere. In bars, in cars, sidewalks, stores, everywhere. There's no escape. I'm God's lonely man.\"",
+                    "\"Thank God for the rain to wash the trash off the sidewalk.\"",
+                    "\"You're only given a little spark of madness. You mustn't lose it.\""
                 ],
                 "image": "http://1.bp.blogspot.com/-lmM1m1GAW0o/U18qRLbINGI/AAAAAAAAJwo/m33mQEaiqMk/s1600/The-King-of-Comedy-ending.jpg",
                 "reveal": "http://i.imgur.com/PJxfwoW.png"
@@ -111,20 +118,22 @@
                 "question": "2001: A Space Odyssey",
                 "correct": 2,
                 "answers": [
-                    "There is no more beauty, and there's no more imagination. And there are no frontiers left to conquer.",
-                    "On Earth, everywhere you go, the temperature is 75 degrees. Everything is the same; all the people are exactly the same. Now what kind of life is that?",
-                    "I'm sorry, Dave. I'm afraid I can't do that."
+                    "\"There is no more beauty, and there's no more imagination. And there are no frontiers left to conquer.\"",
+                    "\"On Earth, everywhere you go, the temperature is 75 degrees. Everything is the same; all the people are exactly the same. Now what kind of life is that?\"",
+                    "\"I'm sorry, Dave. I'm afraid I can't do that.\"",
+                    "\"Do you think I'm trying to trick you with reverse psychology? I mean, seriously, now.\""
                 ],
                 "image": "https://www.sfsymphony.org/getmedia/ee280956-c54f-41a5-b62d-a39c6b98e4e0/2001-Space-Odyssey?width=583&height=335&ext=.jpg",
                 "reveal": "http://i.imgur.com/uG5u5z1.jpg"
             },
             {
                 "question": "Monty Python and the Holy Grail",
-                "correct": 0,
+                "correct": 3,
                 "answers": [
-                    "'Tis but a scratch.",
-                    "He's not the Messiah. He's a very naughty boy! Now, piss off!",
-                    "Look, I don't think it should be a sin, just for saying \"Jehovah\"."
+                    "\"He's not the Messiah. He's a very naughty boy! Now, piss off!\"",
+                    "\"Look, I don't think it should be a sin, just for saying 'Jehovah'\".",
+                    "\"You come to beg a truce, you should be on your knees.\"",
+                    "\"'Tis but a scratch.\""
                 ],
                 "image": "http://www.intriguing.com/mp/_pictures/grail/large/HolyGrail034.jpg",
                 "reveal": "http://i.imgur.com/ILXMqaA.png"
