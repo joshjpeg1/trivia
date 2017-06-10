@@ -2,6 +2,7 @@
  * Represents a question in a trivia game.
  */
 public class Question {
+  private final String category;
   private final int id;
   private final String question;
   private final Answer[] answers;
@@ -19,13 +20,14 @@ public class Question {
    * @throws IllegalArgumentException if the question or answers array are null,
    *         or if the answers array contains a null
    */
-  public Question(int id, String question, String[] answers,
+  public Question(String category, int id, String question, String[] answers,
                   int answerIndex, String imgUrl, String revealUrl, 
                   Gradient gradient) throws IllegalArgumentException {
-    if (question == null || imgUrl == null || revealUrl == null
+    if (category == null || question == null || imgUrl == null || revealUrl == null
         || Utils.arrIsOrContainsNull(answers) || gradient == null) {
       throw new IllegalArgumentException("Cannot pass uninitialized arguments.");
     }
+    this.category = category;
     this.id = id;
     this.question = question;
     this.answers = new Answer[answers.length];
@@ -106,5 +108,14 @@ public class Question {
    */
   public PImage getRevealImage() {
     return this.revealImg;
+  }
+  
+  /**
+   * Gets the category this question is a part of.
+   *
+   * @return this question's category
+   */
+  public String getCategory() {
+    return this.category;
   }
 }

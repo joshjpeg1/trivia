@@ -72,9 +72,9 @@ public class TriviaModel {
       for (int j = 0; j < a.size(); j++) {
         answers[j] = a.getString(j);
       }
-      categQuestions[i] = new Question(i, obj.getString("question"),
-          answers, obj.getInt("correct"), obj.getString("image"),
-          obj.getString("reveal"), gradient);
+      categQuestions[i] = new Question(category.getString("title"), i, 
+          obj.getString("question"), answers, obj.getInt("correct"), 
+          obj.getString("image"), obj.getString("reveal"), gradient);
     }
     return categQuestions;
   }

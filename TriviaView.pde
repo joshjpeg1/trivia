@@ -244,7 +244,7 @@ public class TriviaView {
     this.revealImg = draw.coverImage(question.getRevealImage(), 400, 300);
     if (this.over.get(0) == null) {
       this.over.set(0, new ScreenElem(30, height - 230, 400, 200, question.getGradient(),
-          white, question.toString(), 40));
+          white, question.getCategory(), 40));
     }
   }
   
