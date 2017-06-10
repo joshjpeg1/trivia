@@ -4,7 +4,7 @@
  * @author       Joshua Pensky
  * @title        Trivia
  * @description  A trivia game.
- * @version      0.1
+ * @version      1.0
  */
 
 private TriviaModel model;
