@@ -386,7 +386,7 @@
                     "The King of Queens"
                 ],
                 "image": "http://i.imgur.com/5vcM0wG.png",
-                "reveal": "https://cdn1.lockerdomecdn.com/uploads/b8b8ec5730b61ac7a88a01e303a387e33599e2e5014f3cd933884019f4ce6af3_large"
+                "reveal": "http://i.imgur.com/VoPZLVc.jpg"
             },
             {
                 "question": "\"Boss of me\"",
@@ -398,7 +398,7 @@
                     "Chuck"
                 ],
                 "image": "http://i.imgur.com/5vcM0wG.png",
-                "reveal": "https://pogd.es/assets/episodes/Malcolm-in-the-Middle/Malcolm-in-the-Middle-S03E01-71f5dfe28880fe248fe14f238daf44a0-thumb.jpg"
+                "reveal": "http://i.imgur.com/xb9a9V8.jpg"
             },
             {
                 "question": "\"They all just fade away\"",
@@ -422,7 +422,7 @@
                     "Drake and Josh"
                 ],
                 "image": "http://i.imgur.com/5vcM0wG.png",
-                "reveal": "https://cdn1.lockerdomecdn.com/uploads/f1572276e178239343b6192dabcc1d0310bb2be178f8838221a400d2f793da14_large"
+                "reveal": "http://i.imgur.com/vt7Z8Ut.jpg"
             },
             {
                 "question": "\"If it's all right, then you're all wrong\"",
@@ -442,7 +442,7 @@
         "title": "Harry Potter",
         "gradient": {
             "top": [46, 240, 166],
-            "bot": [180, 239, 121]
+            "bot": [150, 209, 91]
         },
         "from": "https://www.buzzfeed.com/bullo/potter-heads-only?utm_term=.qhm2bYmy1#.cyyz5BeLM",
         "questions": [
@@ -467,7 +467,7 @@
                     "Percy",
                     "Ron"
                 ],
-                "image": "http://vignette1.wikia.nocookie.net/harrypotter/images/7/71/The_Weasley_Family_at_Egypt.jpg/revision/latest?cb=20150828153802",
+                "image": "http://i.imgur.com/1P7cI0n.jpg",
                 "reveal": "https://s-media-cache-ak0.pinimg.com/736x/c4/ac/34/c4ac34e2054c12293f074fb19482552c.jpg"
             },
             {
@@ -528,7 +528,7 @@
                     "A ladybug"
                 ],
                 "image": "http://www.harrymedia.com/img/data/media/476/medium_Evanna_Lynch_as_Luna_Lovegood-o8k6edqt.jpg",
-                "reveal": "http://vignette3.wikia.nocookie.net/harrypotter/images/f/f8/Patronus_Hare.jpg/revision/latest?cb=20170109002548"
+                "reveal": "http://i.imgur.com/iR92YgZ.jpg"
             },
             {
                 "question": "Which one of these ingredients is NOT used in the making of Polyjuice potion?",
